@@ -7,17 +7,7 @@
 
 <?php
 						$count=$_GET["count"];
-						$servername = "localhost";
-						$username = "anna";
-						$password = "karenina";
-						$dbname = "detail";
-
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						// Check connection
-						if ($conn->connect_error) {
-							die("Connection failed: " . $conn->connect_error);
-						} 
+						include_once('includeGraph.php');
 								mysql_connect($servername, $username, $password);
 								$res = mysql_query("SHOW TABLES FROM $dbname");
 								$tables = array();

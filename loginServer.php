@@ -4,23 +4,12 @@
 	
 	<body>
 		<?php 
+	
+include_once('includeUser.php');
 		
 		$e = $_POST['e'];
 		$p = $_POST['p'];
-		
-		
-		
-	$servername = "localhost";
-	$username = "anna";
-	$password = "karenina";
-	$dbname = "users";
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} 
 	$match = false;
 	$sql = "SELECT email,pass1 FROM users";
 

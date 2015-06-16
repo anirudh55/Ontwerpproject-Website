@@ -3,7 +3,7 @@
 	
 	<body>
 		<?php 
-		
+		include_once('includeGraph.php');
 		$wname = strval($_POST['wname']);
 		$wwname = $_POST['wname'];
 		

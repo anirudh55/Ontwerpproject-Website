@@ -3,20 +3,7 @@
 	
 	<body>
 		<?php 
-		
-		
-		
-	$servername = "localhost";
-	$username = "anna";
-	$password = "karenina";
-	$dbname = "users";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} 
+		include_once('includeUser.php');
 
 	$e = mysqli_real_escape_string($conn, $_POST['e']);
 	$p1 = $_POST['p1'];

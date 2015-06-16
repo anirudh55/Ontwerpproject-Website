@@ -4,7 +4,7 @@
 	<body>
 		<?php 
 		
-		require_once('dbCreateConn.php');
+		require_once('includeGraph.php');
 
 	//	$wname = strval($_POST['wname']);
 	//	$wwname = $_POST['wname'];
@@ -15,9 +15,6 @@
 
 	$colName = preg_replace('/\s+/', '', $colName);
 
-
-	
-	
 	$sql = "SELECT date, " .$colName . " FROM " .$tableName;
 
 	$result = $conn->query($sql);
