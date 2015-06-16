@@ -4,6 +4,8 @@
 	<body>
 		<?php 
 		
+		require_once('dbCreateConn.php');
+
 	//	$wname = strval($_POST['wname']);
 	//	$wwname = $_POST['wname'];
 	
@@ -14,17 +16,7 @@
 	$colName = preg_replace('/\s+/', '', $colName);
 
 
-	$servername = "localhost";
-	$username = "anna";
-	$password = "karenina";
-	$dbname = "detail";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-	} 
+	
 	
 	$sql = "SELECT date, " .$colName . " FROM " .$tableName;
 
