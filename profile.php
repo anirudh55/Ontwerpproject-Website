@@ -72,6 +72,39 @@
 				xmlhttp.send("e1="+e1+"&e2="+e2+"&p1="+p1+"&p2="+p2);		
 			}
 		}
+		
+		
+		function getEmails(){
+				var xmlhttp;
+				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function(){
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+						var tmp = xmlhttp.responseText;
+						tmp = tmp.replace('"','');
+						tmp = tmp.replace('"','');
+						tmp = tmp.replace('"','');
+						tmp = tmp.replace('"','');
+						tmp = tmp.replace(']','');
+						tmp = tmp.replace('[','');
+						tmp = tmp.split(",");
+						
+						document.getElementById('email1').value = tmp[0];
+						document.getElementById('email2').value = tmp[1];
+						
+						document.getElementById('tmp').innerHTML = tmp;
+					}
+				  }
+				xmlhttp.open("POST","update.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("fields=true");		
+		}
+		
 	</script>
 	</head>
 	
@@ -99,6 +132,7 @@
 		<button class="btn btn-warning" onclick="save()">Save changes</button>
 		<div id="status"></div>
 		<span id="tmp">tmp</span>
+		<script>getEmails()</script>
 	</div>
 </body>
 

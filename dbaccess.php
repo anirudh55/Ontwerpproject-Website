@@ -278,8 +278,8 @@ if(!isset($_SESSION["email"])){
 		
 <div class="container">
 	<div class="jumbotron">
-		<h1>DNS-Jedi</h1>
-		<p>Welcome to the website of DNS-Jedi. This website is still under construction and can only view basic information.</p>
+		<h1>Graphing tools</h1>
+		<p>Click on +Graph to open a new module. Select the desired components to display their basic information.</p>
 	</div>
 <button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
 	

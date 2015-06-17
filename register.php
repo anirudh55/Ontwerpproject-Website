@@ -6,6 +6,7 @@
 		include_once('includeUser.php');
 
 	$e = mysqli_real_escape_string($conn, $_POST['e']);
+	$e2 = mysqli_real_escape_string($conn, $_POST['e2']);
 	$p1 = $_POST['p1'];
 	$p2 = $_POST['p2'];
 
@@ -38,7 +39,7 @@ if($match){	//Email is already in the database.
 	exit();
 } else{
 	//$cryptpass = crypt($p1);
-	$sql = "INSERT INTO users (email, pass1) VALUES('$e', '$p1')";
+	$sql = "INSERT INTO users (email, email2, pass1) VALUES('$e', '$e2', '$p1')";
 	if ($conn->query($sql) === TRUE) {
     echo "true";
 	} else {

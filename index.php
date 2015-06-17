@@ -19,11 +19,34 @@
 		
 		
 	<script>
+		var current = [];
 		// Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
+		google.load("visualization", "1", {packages:["table"]});
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.setOnLoadCallback(drawChart);
+		
+		function createDownload(){
+				var xmlhttp;
+				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function()  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)	{
+					var button = "<li class='list-group-item'><a href='results.json' download><button class='btn btn-default'>Download</button></a></li>";
+					  $(document).ready(function(){
+								$("#download_button").append(button);
+						});
+					}
+				  }
+				xmlhttp.open("POST","dbColRead.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("colName=" + current[1] + "&tableName="+current[0] + "&download=true");
+		}
 		
 		function createGraph(component, attribute){
 			
@@ -36,6 +59,8 @@
 						}
 					xmlhttp.onreadystatechange = function() {
             			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+							current[0] = component;
+							current[1] = attribute;
 							
 								var resp = xmlhttp.responseText;
 								var index = resp.indexOf("][");
@@ -62,7 +87,7 @@
 									arg1[i] = parseInt(arg1[i]);
 									arg2[i] = parseInt(arg2[i]);
 								}
-								
+								document.getElementById('download_div').innerHTML = "<ul id='download_button' class='list-group'><li class='list-group-item'><button class='btn btn-primary' onclick='createDownload()'>Generate JSON File</button></li></ul>";
 								drawChart(arg1,arg2, component, attribute);
 							
 						}
@@ -76,7 +101,7 @@
 		}
 		
 			function drawChart(arg1, arg2, component, attribute){
-			
+		
 			var data = new google.visualization.DataTable();
 			data.addColumn('datetime', 'Date');
 			data.addColumn('number', attribute);
@@ -90,21 +115,22 @@
 					data.addRow([new Date(arg1[i]) , arg2[i]]);
 				}
 		
-			var options = {'title':component,'width':400,
-                       'height':300,
+			var options = {'title':component,
+						'width':600,
+                       'height':500,
 					explorer:{}};
 			
 			var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 			chart.draw(data,options);
 			
-		/*	tmp  = "table_div";
-			var table = new google.visualization.Table(document.getElementById(tmp));
+		
+			var table = new google.visualization.Table(document.getElementById('table_div'));
         	table.draw(data, {showRowNumber: true});
-		*/
+		
 
 		}
 		
-		function removeNoti(index, component, attribute, message){
+		function removeNoti(index, component, attribute, message,date){
 			
 			var noti = "#noti" + index;
 			$(document).ready(function(){
@@ -125,7 +151,7 @@
 			  }
 			xmlhttp.open("POST","notifications.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xmlhttp.send("comp=" + component + "&attr=" + attribute + "&msg=" + message);
+			xmlhttp.send("comp=" + component + "&attr=" + attribute + "&msg=" + message + "&date=" + date);
 			
 		}
 		
@@ -157,13 +183,28 @@
 		</script>
 		
 		<div class="container">
+			<div class="jumbotron">
+		<h1>DNS-Jedi</h1>
+		<p>Welcome to the website of DNS-Jedi. This website is still under construction and can only view basic information.</p>
+		</div>
 			<div class="row">
 				<div class="col-sm-4">
 					<div id="notifications">Notifcations</div>
 					<script> createNoti()</script>
 				</div>
 				<div class="col-sm-6" >
-					<div id="chart_div"></div>
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#chart_div" data-toggle="tab">Graph</a></li>
+						<li><a href="#table_div" data-toggle="tab">Table</a></li>
+						<li><a href="#download_div" data-toggle="tab">Export</a></li>
+					</ul>
+					
+					<div class="tab-content">
+						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
+						<div class="tab-pane fade" id="table_div">Table data</div>
+						<div class="tab-pane fade" id="download_div">Download data</div> 
+					</div>
+					
 				</div>
 			</div>
 			<div id="test"></div>

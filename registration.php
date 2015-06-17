@@ -21,7 +21,7 @@
 	var tf = document.getElementById(elem);
 	var test = tf.value;
 	var rx = new RegExp;
-	if(elem == "email" || elem == "pass1" || elem == "pass2"){
+	if(elem == "email" || elem == "pass1" || elem == "pass2"  || elem =="email2"){
 		rx = /[' "]/gi;
 	} else if(elem == "username"){
 		rx = /[^a-z0-9]/gi;
@@ -43,6 +43,8 @@
 		//document.getElementById('extra').innerHTML = e + "type of e :   " + typeof(e);
 			var p1 = document.getElementById('pass1').value;
 			var p2 = document.getElementById('pass2').value;
+			var e2 = document.getElementById('email2').value;
+			//TODO Get e2!
 			if(e == "" || p1== "" || p2 == ""){
 				document.getElementById('status').innerHTML	= "Please fill out all the fields";
 			} else if(p1 != p2){
@@ -69,7 +71,7 @@
 				  }
 				xmlhttp.open("POST","register.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("e="+e+"&p1="+p1+"&p2=" + p2);
+				xmlhttp.send("e="+e+"&p1="+p1+"&p2=" + p2 + "&e2=" + e2);
 			}
 			
 		} else {
@@ -130,6 +132,10 @@
 			<div class="form-group">
 				<label for="email">E-mail address: </label>
 				<input type="email" class="form-control" id="email" onkeyup="restrict('email')"> 
+			</div>
+			<div class="form-group">
+				<label for="email2">Secondary E-mail address: </label>
+				<input type="email" class="form-control" id="email2" onkeyup="restrict('email2')"> 
 			</div>
 			<div class="form-group">
 				<label for="pass1">Password: </label>
