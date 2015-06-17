@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+if(!isset($_SESSION["email"])){
+	header("location: login.php");
+	exit();
+}
+
+
 include_once('includeNotifcation.php');
 if(isset($_POST['comp'])){
 	$sql = "DELETE FROM notifications WHERE component = '{$_POST['comp']}' AND attribute = '{$_POST['attr']}' AND message = '{$_POST['msg']}' AND date = '{$_POST['date']}'"; 

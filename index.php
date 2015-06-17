@@ -1,11 +1,10 @@
 <?php
-/*	session_start();
-	if(!isset($_SESSION['email'])){
-	   header("location: login.php");
-		exit();
-	}*/
+	session_start();
+if(!isset($_SESSION["email"])){
+	header("location: login.php");
+	exit();
+}
 ?>
-
 <html>
 	<head><title>DNS - Jedi</title> 
 			 <meta charset="utf-8">
@@ -15,8 +14,6 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		
-		
 		
 	<script>
 		var current = [];
@@ -209,7 +206,5 @@
 			</div>
 			<div id="test"></div>
 		</div>
-			
-		
 	</body>
 </html>

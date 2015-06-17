@@ -1,10 +1,6 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html><head><title></title></head>
-	
-	<body>
-		<?php 
-	
+<?php 
+session_start(); 
+
 include_once('includeUser.php');
 		
 		$e = $_POST['e'];
@@ -36,5 +32,3 @@ if($match){	//exists
 	echo "Failed to login";
 }
 		?>
-	</body>
-</html>

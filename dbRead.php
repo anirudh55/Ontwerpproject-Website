@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html><head><title></title></head>
-	
-	<body>
+
 		<?php 
+session_start();
+if(!isset($_SESSION["email"])){
+	header("location: login.php");
+	exit();
+}
 		include_once('includeGraph.php');
 		$wname = strval($_POST['wname']);
 		$wwname = $_POST['wname'];
 		
-		$servername = "localhost";
+/*		$servername = "localhost";
 	$username = "anna";
 	$password = "karenina";
-	$dbname = "detail";
+	$dbname = "detail"; */
 
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);

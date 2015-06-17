@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html><head><title></title></head>
-	
-	<body>
-		<?php 
+	<?php 
+	session_start();
+if(!isset($_SESSION["email"])){
+	header("location: login.php");
+	exit();
+}
 		include_once('includeUser.php');
 		$e = $_POST['e'];
 	

@@ -1,8 +1,8 @@
 		<?php 
 		session_start();
-if(!isset($_SESSION['email'])){
+	if(!isset($_SESSION['email'])){
 	echo "Not logged in.";
-//	header("location: login.php");
+	header("location: login.php");
 	exit();
 } 
 

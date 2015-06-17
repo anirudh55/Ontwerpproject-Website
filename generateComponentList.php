@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-</head>
-<body>
-
 <?php
+session_start();
+if(!isset($_SESSION["email"])){
+	header("location: login.php");
+	exit();
+}
 						$count=$_GET["count"];
 						include_once('includeGraph.php');
 								mysql_connect($servername, $username, $password);
@@ -35,7 +33,7 @@ echo "<ul class = \"nav nav-tabs\">
 								}
 							echo "</select>";
 				echo "<div id=\"secondMenu{$count}\">Second menu</div>
-				<div id=\"thirdMenu{$count}\">Third Menu </div>
+				<div id=\"thirdMenu{$count}\"></div>
 			<div class=\"tab-content\">	
 				<div class=\"tab-pane fade active in\" id=\"chart_div{$count}\" style=\"width:400; height:300\"></div> 
 				<div class=\"tab-pane fade\" id=\"table_div{$count}\" style=\"width:400; height:300; overflow-x:hidden;overflow-y: scroll; \">Table data will be displayed on this side of the column</div>

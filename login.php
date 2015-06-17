@@ -38,8 +38,9 @@
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
 						var tmp = xmlhttp.responseText;
-						if(tmp)
+						if(tmp){
 							window.location.href= 'dbaccess.php';
+						}
 						document.getElementById('status').innerHTML = "Respons: " + tmp + " Type of respons: " + typeof(tmp);
 					}
 				  }
