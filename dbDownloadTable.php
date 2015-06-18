@@ -11,19 +11,29 @@
 	#Name of table to retrieve.
 	$tableName = mysqli_real_escape_string($conn, $_POST['tableName']);
 	#Columns to retrieve, date is always retrieved.
-	$columns = "date, ".mysqli_real_escape_string($conn, $_POST['getColumns']);
+	$columns = "date,".mysqli_real_escape_string($conn, $_POST['getColumns']);
 	#Start date from which to retrieve (in milliseconds since epoch).
-	$firstDate = mysqli_real_escape_string($conn, $_POST['startDate']);
-	#End date from which to retrieve (in milliseconds since epoch). 
-	$secondDate = mysqli_real_escape_string($conn, $_POST['endDate']);
 
-	#Create sql query.
-	$sql = "SELECT " .$columns ." FROM " .$tableName ." WHERE date >= " .$firstDate ." AND date <= " .$secondDate;
+	$firstDate = "";
+	$secondDate = "";
+	$sql = "";
+
+	if(isset($_POST['startDate']) && isset($_POST['endDate'])){
+		$firstDate = mysqli_real_escape_string($conn, $_POST['startDate']);
+		#End date from which to retrieve (in milliseconds since epoch). 
+		$secondDate = mysqli_real_escape_string($conn, $_POST['endDate']);#Create sql query.
+		$sql = "SELECT " .$columns ." FROM " .$tableName ." WHERE date >= " .$firstDate ." AND date <= " .$secondDate;
+	}else{
+		$sql = "SELECT " .$columns ." FROM " .$tableName;
+	}
+	
+
+	
 	#Execute query.
 	$result = $conn->query($sql);
 
 	#Create array of column names.
-	$fields = explode(", ", $columns);
+	$fields = explode(",", $columns);
 	#Size of fields.
 	$numberOfFields = count($fields);
 	#Create data array.
@@ -49,15 +59,12 @@
 	#Add $componentName => $dataArray to return array.
 	$returnArray[$tableName] = $dataArray;
 
-	#Download if download is set to true.
-	if($download == 'true'){
-		#Create download file results.json.
-		$downloadFile = fopen("results.json","w") or die("Unable to open file");
-		#Write to downloadFile.
-		fwrite($downloadFile,json_encode($returnArray));
-		#Close downloadFile.
-		fclose($downloadFile);
-		#Echo true.
-		echo true;
-	}
+	#Create download file results.json.
+	$downloadFile = fopen("results.json","w") or die("Unable to open file");
+	#Write to downloadFile.
+	fwrite($downloadFile,json_encode($returnArray));
+	#Close downloadFile.
+	fclose($downloadFile);
+	#Echo true.
+	echo true;
 ?>

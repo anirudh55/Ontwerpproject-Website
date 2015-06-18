@@ -10,33 +10,43 @@
 	}
 	
 	#Retrieve email.	
-	$e = $_POST['e'];
+	$e = mysqli_real_escape_string($conn, $_POST['e']);
 	#Retrieve password.
-	$p = $_POST['p'];
+	$p = mysqli_real_escape_string($conn, $_POST['p']);
 
 	#Actual password and input password don't match.
 	$match = false;
 	#Retrieve email1 and password from users.
-	$sql = "SELECT password, hash FROM users WHERE email1 == " .$e;
+	$sql = "SELECT password FROM users WHERE email1 = " .$e;
 	#Execute query
 	$result = $conn->query($sql);
 
+		$downloadFile = fopen("results.json","w") or die("Unable to open file");
+		#Write to downloadFile.
+		fwrite($downloadFile, $result);
+		#Close downloadFile.
+		fclose($downloadFile);
+
 	#Check if there is any output.
 	if ($result->num_rows > 0) {
+		#Iterate over rows
     		while($row = $result->fetch_assoc()) {
-			if($row["email1"]==$e && $row["password"] == $p){
-				$e = $row["email1"];
+			#Check whether entered password is equal to stored password after hashing.
+			echo password_verify($p, $row["password"]);
+			if(password_verify($p, $row["password"])){
 				$p = $row["password"];
 				$match = true;
 				break;
 			}
     		}
 	}else {
-    		echo "0 results";
+   		echo "0 results";
 	}
+
 
 if($match){	//exists
 	$_SESSION['email']  = $e;
+	$_SESSION['password'] = $p;
 	//header("location: dbaccess.php");
 	echo true;
 } else{
