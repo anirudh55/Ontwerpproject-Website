@@ -364,13 +364,31 @@ if(!isset($_SESSION["email"])){
 		<h1>Graphing tools</h1>
 		<p>Click on +Graph to open a new module. Select the desired components to display their basic information.</p>
 	</div>
-<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
 	
-<div id="main"></div>	
+	<!--Tabs-->
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#detailedInfo" data-toggle='tab'>Detailed information</a></li>
+		<li><a href="#generalInfo" data-toggle='tab'>General information</a></li>
+	</ul>
+	
+<div class="tab-content">
+	<!--Graphs, downloads, etc. -->
+	<div id ="detailedInfo" class="tab-pane fade active in">
+		<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
+		<div id="main">
+		</div>
+	</div>			
 			
-				
+	<!--General info -->
+	<div id="generalInfo" class="fade">
+		Select a component: 
+		<div id="main2">
 			
-		<!--Div that will hold the pie chart-->
+		</div>
+	</div>
+</div>
+		<!--Testing div-->
 		<div id="tmp"></div>
 </div>
 		
