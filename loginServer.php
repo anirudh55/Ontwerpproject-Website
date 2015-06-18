@@ -2,14 +2,14 @@
 session_start(); 
 
 include_once('includeUser.php');
+		 if(mysqli_real_escape_string($conn, $_POST['p']) != $_POST['p'] || mysqli_real_escape_string($conn, $_POST['e']) != $_POST['e']){
+			echo "Please don't use any quotes.";
+			exit();
+		 } 
 		
-		$e = mysqli_real_escape_string($_POST['e']);
-		$p = mysqli_real_escape_string($_POST['p']);
+		$e = $_POST['e'];
+		$p = $_POST['p'];
 
-if($p != $_POST['p'] || $e != $_POST['e']){
-	echo "Please don't use any quotes.";
-	exit();
-}
 
 	$match = false;
 	$sql = "SELECT email,pass1 FROM users";

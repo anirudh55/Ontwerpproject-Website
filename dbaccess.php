@@ -270,6 +270,11 @@ if(!isset($_SESSION["email"])){
 			setColumn(count,true);
 			
 		}
+		
+		
+		function downloadTable(count){
+			document.getElementById('tmp').innerHTML = count;
+		}
 	</script>
 	</head>
 	<body>

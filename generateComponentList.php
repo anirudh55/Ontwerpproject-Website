@@ -37,7 +37,7 @@ echo "<ul class = \"nav nav-tabs\">
 			<div class=\"tab-content\">	
 				<div class=\"tab-pane fade active in\" id=\"chart_div{$count}\" style=\"width:400; height:300\"></div> 
 				<div class=\"tab-pane fade\" id=\"table_div{$count}\" style=\"width:400; height:300; overflow-x:hidden;overflow-y: scroll; \">Table data will be displayed on this side of the column</div>
-				<div class=\"tab-pane fade\" id=\"download_div{$count}\"><button class=\"btn btn-primary\" onclick=\"downloadGraph({$count})\">Generate JSON File</button><div id=\"downloadButton{$count}\"></div></div>
+				<div class=\"tab-pane fade\" id=\"download_div{$count}\"><ul class='list-group'><li class='list-group-item'><button class=\"btn btn-primary\" onclick=\"downloadGraph({$count})\">Generate JSON File</button></li><li class='list-group-item'><div id=\"downloadButton{$count}\">Download button will appear here</div></li></ul></div>
 			</div>	
 				<div id=\"extra{$count}\"> </div> " ; 
 
@@ -49,7 +49,7 @@ echo "<ul class = \"nav nav-tabs\">
 		
 	//	</div>
 //	</div>" ; 
-	
+	//<li class='list-group-item'><button class=\"btn btn-primary\" onclick=\"downloadTable({$count})\">Download entire component</button></li>
 	?>
 </body>
 </html>

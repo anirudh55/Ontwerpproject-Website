@@ -3,3 +3,4 @@ Luuk is noob
 1. Hash the passwords
 2. Make table scrollable
 3. Add compnent information
+4. Invert table, so that most recent is on top

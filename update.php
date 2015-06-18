@@ -16,8 +16,12 @@ if(isset($_POST['fields'])){
 	if ($result->num_rows > 0) {
     // output data of each row
 		while($row = $result->fetch_assoc()) {
-			$e1 = $row["email"];
-			$e2 = $row["email2"];
+			if($row['email'] == $email){
+				$e1 = $row["email"];
+				$e2 = $row["email2"];
+				break;
+			}
+			
 		}
 	} else {
 		echo "0 results";
