@@ -186,6 +186,7 @@ if(!isset($_SESSION["email"])){
 		</div>
 			<div class="row">
 				<div class="col-sm-4">
+					<span><h4>Notifications</h4></span>
 					<div id="notifications">Notifcations</div>
 					<script> createNoti()</script>
 				</div>
