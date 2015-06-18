@@ -1,33 +1,39 @@
 <?php 
-session_start(); 
+	session_start(); 
 
-include_once('includeUser.php');
-		 if(mysqli_real_escape_string($conn, $_POST['p']) != $_POST['p'] || mysqli_real_escape_string($conn, $_POST['e']) != $_POST['e']){
-			echo "Please don't use any quotes.";
-			exit();
-		 } 
-		
-		$e = $_POST['e'];
-		$p = $_POST['p'];
+	include_once('includeUser.php');
 
+	#Check if user did not input any quotes.
+	if(mysqli_real_escape_string($conn, $_POST['p']) != $_POST['p'] || mysqli_real_escape_string($conn, $_POST['e']) != $_POST['e']){
+		echo "Please don't use any quotes.";
+		exit();
+	}
+	
+	#Retrieve email.	
+	$e = $_POST['e'];
+	#Retrieve password.
+	$p = $_POST['p'];
 
+	#Actual password and input password don't match.
 	$match = false;
-	$sql = "SELECT email,pass1 FROM users";
-
+	#Retrieve email1 and password from users.
+	$sql = "SELECT password, hash FROM users WHERE email1 == " .$e;
+	#Execute query
 	$result = $conn->query($sql);
+
+	#Check if there is any output.
 	if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-		if($row["email"]==$e && $row["pass1"] == $p){
-			$e = $row["email"];
-			$p = $row["pass1"];
-			$match = true;
-			break;
-		}
-    }
-} else {
-    echo "0 results";
-}
+    		while($row = $result->fetch_assoc()) {
+			if($row["email1"]==$e && $row["password"] == $p){
+				$e = $row["email1"];
+				$p = $row["password"];
+				$match = true;
+				break;
+			}
+    		}
+	}else {
+    		echo "0 results";
+	}
 
 if($match){	//exists
 	$_SESSION['email']  = $e;

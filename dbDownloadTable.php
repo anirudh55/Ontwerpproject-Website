@@ -57,5 +57,7 @@
 		fwrite($downloadFile,json_encode($returnArray));
 		#Close downloadFile.
 		fclose($downloadFile);
+		#Echo true.
+		echo true;
 	}
 ?>
