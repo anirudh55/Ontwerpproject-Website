@@ -10,8 +10,13 @@ if(!isset($_SESSION["email"])){
 
 	$e = mysqli_real_escape_string($conn, $_POST['e']);
 	$e2 = mysqli_real_escape_string($conn, $_POST['e2']);
-	$p1 = $_POST['p1'];
-	$p2 = $_POST['p2'];
+	$p1 = mysqli_real_escape_string($conn, $_POST['p1']);
+	$p2 = mysqli_real_escape_string($conn, $_POST['p2']);
+
+if($e != $_POST['e'] || $e2 != $_POST['e2'] || $p1 != $_POST['p1'] ||$p2 != $_POST['p2']){
+	echo "Please don't use any quotes: ";
+	exit();
+}
 
 	$match = false;
 	$sql = "SELECT email FROM users";
@@ -37,8 +42,8 @@ if($match){	//Email is already in the database.
 	exit();
 } else if($p1 == "" || $p2 == "" || $e == ""){
 	echo "There are empty fields. Also you bypassed the javascript code. Please don't do this anymore.";
-} else  if (strlen($p1) < 3 || strlen($p2) > 16) {
-	echo "The passwords must be between 3 and sixteen characters.";
+} else  if (strlen($p1) < 3 || strlen($p2) > 88) {
+	echo "The passwords must be at least 3 characters and less than 88 characters.";
 	exit();
 } else{
 	//$cryptpass = crypt($p1);

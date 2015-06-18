@@ -39,7 +39,7 @@
 					{
 						var tmp = xmlhttp.responseText;
 						if(tmp){
-							window.location.href= 'dbaccess.php';
+							window.location.href= 'index.php';
 						}
 						document.getElementById('status').innerHTML = "Respons: " + tmp + " Type of respons: " + typeof(tmp);
 					}
@@ -66,7 +66,7 @@
 				<label for="email">Password: </label>
 				<input type="password" class="form-control" id="password" onkeyup="restrict('password')">
 			</div>
-			 <button class="btn btn-default" type="button" onclick="login()">Login</button>
+			 <button type ="submit" class="btn btn-default" type="button" onclick="login()">Login</button>
 		</form>
 		<div id="status"></div>
 		</div>

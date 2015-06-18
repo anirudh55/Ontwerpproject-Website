@@ -73,7 +73,7 @@ if(!isset($_SESSION["email"])){
 						if(tmp.search("true") > 0){
 							document.getElementById('myForm').innerHTML = "Succesfully registered a new email address";
 						}	else { 
-							document.getElementById("status").innerHTML= "Registration failed: " + tmp + " type:" + typeof(tmp)+ " Length: "  + tmp.length;
+							document.getElementById("status").innerHTML= "Registration failed: " + tmp;
 						}
 					}
 				  }
@@ -139,23 +139,23 @@ if(!isset($_SESSION["email"])){
 		<form role="form" name="signupform" id="signupform">
 			<div class="form-group">
 				<label for="email">E-mail address: </label>
-				<input type="email" class="form-control" id="email" onkeyup="restrict('email')"> 
+				<input type="email" class="form-control" id="email"> <!-- onkeyup="restrict('email')" -->
 			</div>
 			<div class="form-group">
 				<label for="email2">Secondary E-mail address: </label>
-				<input type="email" class="form-control" id="email2" onkeyup="restrict('email2')"> 
+				<input type="email" class="form-control" id="email2" > <!--onkeyup="restrict('email2')" -->
 			</div>
 			<div class="form-group">
 				<label for="pass1">Password: </label>
-				<input type="password" class="form-control" id="pass1" maxlength="16" onkeyup="restrict('pass1')">
+				<input type="password" class="form-control" id="pass1" maxlength="88" ><!--onkeyup="restrict('pass1')" -->
 			</div>
 			<div class="form-group">
 				<label for="pass2">Retype password: </label>
-				<input type="password" class="form-control" id="pass2" maxlength="16" onkeyup="restrict('pass2')">
+				<input type="password" class="form-control" id="pass2" maxlength="88" ><!--onkeyup="restrict('pass2')" -->
 			</div>
-			
+			<button type ="submit" class="btn btn-default" onclick="signUp()" >Submit</button>
 		</form>
-				<button class="btn btn-default" onclick="signUp()" >Submit</button>
+				
 			
 			<div id="test"></div>
 			<div id="status" class="text-warning"></div>
