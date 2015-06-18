@@ -22,6 +22,7 @@
 	$result = $conn->query($sql);
 
 	echo true;
+	$_SESSION['email'] = $e;
 
 #		$downloadFile = fopen("results.json","w") or die("Unable to open file");
 #		#Write to downloadFile.
