@@ -1,0 +1,5 @@
+Luuk is noob
+
+1. Hash the passwords
+2. Make table scrollable
+3.

@@ -60,11 +60,11 @@
 		 <form role="form">
 			<div class="form-group">
 				<label for="email">Email address: </label>
-				<input type="email" class="form-control" id="email" onkeyup="restrict('email')">
+				<input type="email" class="form-control" id="email" > <!--onkeyup="restrict('email')" -->
 			</div>
 			<div class="form-group">
 				<label for="email">Password: </label>
-				<input type="password" class="form-control" id="password" onkeyup="restrict('password')">
+				<input type="password" class="form-control" id="password" > <!--onkeyup="restrict('password')" -->
 			</div>
 			 <button type ="submit" class="btn btn-default" type="button" onclick="login()">Login</button>
 		</form>

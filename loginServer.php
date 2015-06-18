@@ -3,8 +3,13 @@ session_start();
 
 include_once('includeUser.php');
 		
-		$e = $_POST['e'];
-		$p = $_POST['p'];
+		$e = mysqli_real_escape_string($_POST['e']);
+		$p = mysqli_real_escape_string($_POST['p']);
+
+if($p != $_POST['p'] || $e != $_POST['e']){
+	echo "Please don't use any quotes.";
+	exit();
+}
 
 	$match = false;
 	$sql = "SELECT email,pass1 FROM users";
