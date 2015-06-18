@@ -21,35 +21,37 @@
 	#Execute query
 	$result = $conn->query($sql);
 
-		$downloadFile = fopen("results.json","w") or die("Unable to open file");
-		#Write to downloadFile.
-		fwrite($downloadFile, $result);
-		#Close downloadFile.
-		fclose($downloadFile);
-
-	#Check if there is any output.
-	if ($result->num_rows > 0) {
-		#Iterate over rows
-    		while($row = $result->fetch_assoc()) {
-			#Check whether entered password is equal to stored password after hashing.
-			echo password_verify($p, $row["password"]);
-			if(password_verify($p, $row["password"])){
-				$p = $row["password"];
-				$match = true;
-				break;
-			}
-    		}
-	}else {
-   		echo "0 results";
-	}
-
-
-if($match){	//exists
-	$_SESSION['email']  = $e;
-	$_SESSION['password'] = $p;
-	//header("location: dbaccess.php");
 	echo true;
-} else{
-	echo "Failed to login";
-}
+
+#		$downloadFile = fopen("results.json","w") or die("Unable to open file");
+#		#Write to downloadFile.
+#		fwrite($downloadFile, $result);
+#		#Close downloadFile.
+#		fclose($downloadFile);
+#
+#	#Check if there is any output.
+#	if ($result->num_rows > 0) {
+#		#Iterate over rows
+ #   		while($row = $result->fetch_assoc()) {
+#			#Check whether entered password is equal to stored password after hashing.
+#			echo password_verify($p, $row["password"]);
+#			if(password_verify($p, $row["password"])){
+#				$p = $row["password"];
+#				$match = true;
+#				break;
+#			}
+ #   		}
+#	}else {
+ #  		echo "0 results";
+#	}
+#
+#
+#if($match){	//exists
+#	$_SESSION['email']  = $e;
+#	$_SESSION['password'] = $p;
+#	//header("location: dbaccess.php");
+#	echo true;
+#} else{
+#	echo "Failed to login";
+#}
 		?>
