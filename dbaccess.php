@@ -24,6 +24,8 @@ if(!isset($_SESSION["email"])){
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
+	
+	
 	<script type="text/javascript">
 		var tableNames = [];
 		var columnNames = [];
@@ -87,7 +89,7 @@ if(!isset($_SESSION["email"])){
             			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 							var resp = xmlhttp.responseText;
 							resp.trim();
-						//	document.getElementById('main').innerHTML = resp;
+							//document.getElementById('tmp').innerHTML = resp;
 							secondMenu(resp, tableName, count);
 						}
 					}
@@ -99,8 +101,24 @@ if(!isset($_SESSION["email"])){
 				}
 		}
 		
+		function selectCheckBox(count){
+			
+			var selector = ".checkbox" + count;
+			if($('#checkboxSelector'+count).prop('checked')){
+				
+				$(selector).each(function() { //loop through each checkbox
+                this.checked = true;  //select all checkboxes with class "checkbox1"              
+            	});
+			}else{
+				$(selector).prop('checked',false);
+			}
+		}
+		
 		function secondMenu(resp, tableName, count){
 	
+			var downl = "<label class=\"checkbox-inline\"><input id=\"checkboxSelector"+count+"\" type=\"checkbox\" onclick=\"selectCheckBox("+count+")\">select all</label>";
+			downl = downl + "<div id='c_b'>";
+			
 			resp = resp.replace("[","");
 				resp = resp.replace("]",",");
 				resp = resp.replace(/"/g,'');
@@ -113,10 +131,18 @@ if(!isset($_SESSION["email"])){
 			for(var i = 2; i < ar.length - 1; i++){
 				ar[i].trim();
 				output = output + "<option value=\"" + ar[i] + "\">" + ar[i] + "</option>";
+				
+				downl = downl + "<label class=\"checkbox-inline\"><input class=\"checkbox"+count+"\" type=\"checkbox\" value=\"" + ar[i] + "\">" + ar[i] + "</label>";
 			}
 			output = output + "</select>";
 			tmp = "secondMenu" + count; 
 			document.getElementById(tmp).innerHTML = output; 
+			
+			downl = downl + "</div>";
+			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <br> End date: <input id ='endDate" +count + "' type='text'> <br>";
+			
+			var tmp2 = "advancedOptions" + count;
+			document.getElementById(tmp2).innerHTML = downl;
 			
 			return;
 		}
@@ -264,17 +290,69 @@ if(!isset($_SESSION["email"])){
 		}
 		
 		function downloadGraph(count){
+			
+			
+			var cols = "";
+			var chckbx = "checkbox" + count;
+			$.each($("input[class='"+ chckbx + "']:checked"), function(){ //loop through each checkbox
+                if(this.checked){
+					cols = cols + $(this).val() + ",";	
+				}              
+            });
+			cols = cols.substring(0,cols.lastIndexOf(','));
+		//	document.getElementById('tmp').innerHTML = cols;
+			
+			var tmp = "selectBox" + count; 
+			var selectBox = document.getElementById(tmp);
+			var tname = selectBox.options[selectBox.selectedIndex].value;
+		//	document.getElementById('tmp').innerHTML = tname;
+			
+			var selector = "beginDate" + count; 
+			var beginDate = document.getElementById(selector).value;
+			beginDate = new Date(beginDate).getTime();
+			
+			var selector2 = "endDate" + count; 
+			var endDate = document.getElementById(selector2).value;
+			endDate = new Date(endDate).getTime();
+			
+			
+			//document.getElementById('tmp').innerHTML = res;
+			
+			
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+			else  {// code for IE6, IE5
+			  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			  }
+			xmlhttp.onreadystatechange=function()  {
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				  var tmp = "downloadButton" + count;
+				//  document.getElementById(tmp).innerHTML = xmlhttp.responseText;
+			//	  document.getElementById(tmp).innerHTML = "Create download button";
+			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-danger'>Download</button></a>";
+				if(Boolean(xmlhttp.responseText)){
+					
+						
+					}
+				}
+			  }
+			xmlhttp.open("POST","dbDownloadTable.php",true);
+			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			document.getElementById('tmp').innerHTML = "tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate;
+			xmlhttp.send("tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate);
+
+			/*
 			var colNum = parseInt(count);
 			var tableNum = parseInt(count);
 			
 			setColumn(count,true);
+			*/
 			
 		}
 		
 		
-		function downloadTable(count){
-			document.getElementById('tmp').innerHTML = count;
-		}
 	</script>
 	</head>
 	<body>
@@ -295,6 +373,7 @@ if(!isset($_SESSION["email"])){
 		<!--Div that will hold the pie chart-->
 		<div id="tmp"></div>
 </div>
+		
 	</body>
 </html>
 

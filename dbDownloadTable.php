@@ -26,9 +26,7 @@
 	}else{
 		$sql = "SELECT " .$columns ." FROM " .$tableName;
 	}
-	
 
-	
 	#Execute query.
 	$result = $conn->query($sql);
 
@@ -67,4 +65,5 @@
 	fclose($downloadFile);
 	#Echo true.
 	echo true;
+	#Download if download is set to true.
 ?>
