@@ -1,5 +1,9 @@
 <?php
-	include_once('session.php');
+	session_start();
+	if(!isset($_SESSION['email'])){
+	   header("location: login.php");
+		exit();
+	}
 ?>
 <html><head><title>My Account</title>
 		<meta charset="utf-8">

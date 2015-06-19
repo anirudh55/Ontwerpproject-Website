@@ -1,12 +1,5 @@
 <?php
-	#Start session.
-	session_start();
-
-	#Check if session is valid.
-	if(!isset($_SESSION["email"])){
-		header("location: login.php");
-		exit();
-	}
+	include_once('session.php');
 
 	#Connect to database
 	include_once('includeUser.php');

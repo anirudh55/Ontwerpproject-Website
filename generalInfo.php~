@@ -1,5 +1,5 @@
 <?php
-include_once('session.php');
+session_start();
 require_once('includeGraph.php');
 					if(!isset($_POST['tname'])){
 								mysql_connect($servername, $username, $password);

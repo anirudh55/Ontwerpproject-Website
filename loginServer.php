@@ -26,7 +26,6 @@
 		#Iterate over rows
    		while($row = $result->fetch_assoc()) {
 			#Check whether entered password is equal to stored password after hashing.
-			echo password_verify($p, $row["pass1"]);
 			if(password_verify($p, $row["pass1"])){
 				$p = $row["pass1"];
 				$match = true;
@@ -38,12 +37,12 @@
 	}
 
 
-if($match){	//exists
-	$_SESSION['email']  = $e;
-	$_SESSION['pass1'] = $p;
-	//header("location: dbaccess.php");
-	echo true;
-} else{
-	echo "Failed to login";
-}
+	if($match){	//exists
+		$_SESSION['email']  = $e;
+		$_SESSION['pass1'] = $p;
+		//header("location: dbaccess.php");
+		echo true;
+	} else{
+		echo "Failed to login";
+	}
 		?>

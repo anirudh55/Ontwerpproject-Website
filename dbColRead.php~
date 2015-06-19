@@ -1,10 +1,6 @@
 
 		<?php 
-session_start();
-		if(!isset($_SESSION["email"])){
-		header("location: login.php");
-			exit();
-		}
+include_once('session.php');
 		require_once('includeGraph.php');
 
 	$tableName = $_POST['tableName'];
