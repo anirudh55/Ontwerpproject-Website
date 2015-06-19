@@ -258,7 +258,7 @@ if(!isset($_SESSION["email"])){
 			
 			tmp  = "table_div"  + count;
 			var table = new google.visualization.Table(document.getElementById(tmp));
-        	table.draw(data, {showRowNumber: true});
+        	table.draw(data, {'showRowNumber': true, 'height': 300, sort: 'enable'});
 
 		}
 		//Checks how many components are in the database, and lists them in a drop down menu. When a user clicks on them it calls the primaryMenu() function. 
