@@ -63,6 +63,7 @@
 				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 				  }
 				xmlhttp.onreadystatechange=function(){
+					document.getElementById('status').innerHTML = "Status: " + xmlhttp.responseText;
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
 						var tmp = xmlhttp.responseText;
