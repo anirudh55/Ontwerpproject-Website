@@ -12,10 +12,10 @@
 	$p2 = mysqli_real_escape_string($conn, $_POST['p2']);
 
 	#Check if user input quotes.
-	if($e != $_POST['e'] || $e2 != $_POST['e2'] || $p1 != $_POST['p1'] ||$p2 != $_POST['p2']){
-		echo "Please don't use any quotes: ";
-		exit();
-	}
+#	if($e != $_POST['e'] || $e2 != $_POST['e2'] || $p1 != $_POST['p1'] ||$p2 != $_POST['p2']){
+#		echo "Please don't use any quotes: ";
+#		exit();
+#	}
 
 	#Currently no match of email.
 	$match = false;

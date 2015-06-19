@@ -37,12 +37,12 @@
 	}
 
 
-if($match){	//exists
-	$_SESSION['email']  = $e;
-	$_SESSION['pass1'] = $p;
-	//header("location: dbaccess.php");
-	echo true;
-} else{
-	echo "Failed to login";
-}
+	if($match){	//exists
+		$_SESSION['email']  = $e;
+		$_SESSION['pass1'] = $p;
+		//header("location: dbaccess.php");
+		echo true;
+	} else{
+		echo "Failed to login";
+	}
 		?>

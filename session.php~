@@ -18,7 +18,7 @@
 		$result = $conn->query($sql);
 		#Check if user is in database.
 		if ($result->num_rows > 0) {
-			#Iterate over rows
+			#Iterate over rows.
    			while($row = $result->fetch_assoc()) {
 				#Check whether entered password is equal to stored password after hashing.
 				if($row["pass1"] === $sessionPass){
@@ -29,6 +29,7 @@
 		}
 	}
 
+	#If session does not match, redirect to login page.
 	if(!$match){
 		header("location: login.php");
 		exit();

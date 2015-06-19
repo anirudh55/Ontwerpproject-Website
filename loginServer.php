@@ -42,6 +42,7 @@
 		$_SESSION['pass1'] = $p;
 		//header("location: dbaccess.php");
 		echo true;
+		exit();
 	} else{
 		echo "Failed to login";
 	}

@@ -1,5 +1,6 @@
 <?php 
 	include_once('session.php');
+
 ?>
 
 <html>
@@ -65,7 +66,7 @@
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
 						var tmp = xmlhttp.responseText;
-						
+
 						if(tmp === "true"){
 							document.getElementById('status').innerHTML = "Succesfully registered a new email address";
 						}	else { 

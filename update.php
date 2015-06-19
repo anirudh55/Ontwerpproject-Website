@@ -1,9 +1,9 @@
 		<?php 
 		include_once('session.php');
-} 
 
 if(isset($_POST['fields'])){
-	$email = $_SESSION['email'];	
+	$email = $_SESSION['email'];
+
 	include_once('includeUser.php');
 	
 	$sql = "SELECT email, email2 FROM users";
@@ -63,17 +63,20 @@ if($p1 != $p2){
 } else if($e1 == ""){
 	echo false;
 } else{
+	
 	//$cryptpass = crypt($p1);
 	
 	if($p1 == ""){
 		$sql = "UPDATE users SET email='$e1', email2='$e2' WHERE email='$email'";
 		
 	}else{
+		$p1 = password_hash($p1, PASSWORD_DEFAULT);
 		$sql = "UPDATE users SET email='$e1', pass1='$p1', email2='$e2' WHERE email='$email'";	
 	}
 	
 	if ($conn->query($sql) === TRUE) {
 		$_SESSION['email'] = $e1;
+		$_SESSION['pass1'] = $p1;
     echo true;
 	} else {
 		echo "Error: " . $sql . "<br>" . $conn->error;

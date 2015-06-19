@@ -37,7 +37,6 @@
 				xmlhttp.onreadystatechange=function(){
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
-							window.location.href= 'index.php';
 						var tmp = xmlhttp.responseText;
 						if(tmp){
 							window.location.href= 'index.php';
