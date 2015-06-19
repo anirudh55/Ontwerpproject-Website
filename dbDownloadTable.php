@@ -12,19 +12,17 @@
 	$tableName = mysqli_real_escape_string($conn, $_POST['tableName']);
 	#Columns to retrieve, date is always retrieved.
 	$columns = "date,".mysqli_real_escape_string($conn, $_POST['getColumns']);
-	#Start date from which to retrieve (in milliseconds since epoch).
 
-	$firstDate = "";
-	$secondDate = "";
-	$sql = "";
+	#End start from which to retrieve (in milliseconds since epoch). 
+	$firstDate = mysqli_real_escape_string($conn, $_POST['startDate']);
+	#End date from which to retrieve (in milliseconds since epoch). 
+	$secondDate = mysqli_real_escape_string($conn, $_POST['endDate']);
 
-	if(isset($_POST['startDate']) && isset($_POST['endDate'])){
-		$firstDate = mysqli_real_escape_string($conn, $_POST['startDate']);
-		#End date from which to retrieve (in milliseconds since epoch). 
-		$secondDate = mysqli_real_escape_string($conn, $_POST['endDate']);#Create sql query.
+	#Create sql query.
+	$sql = "SELECT " .$columns ." FROM " .$tableName;
+
+	if(is_numeric($firstDate) && is_numeric($secondDate)){
 		$sql = "SELECT " .$columns ." FROM " .$tableName ." WHERE date >= " .$firstDate ." AND date <= " .$secondDate;
-	}else{
-		$sql = "SELECT " .$columns ." FROM " .$tableName;
 	}
 
 	#Execute query.

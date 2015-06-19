@@ -1,1 +1,1 @@
-here
+SELECT date,cpu,hdd,mem FROM wlocalhost_127_0_0_1_7998 WHERE date >= NaN AND date <= NaN

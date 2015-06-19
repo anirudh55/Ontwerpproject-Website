@@ -47,7 +47,7 @@ if($match){	//Email is already in the database.
 	exit();
 } else{
 	//$cryptpass = crypt($p1);
-	$sql = "INSERT INTO users (email, email2, pass1) VALUES('$e', '$e2', '$p1')";
+	$sql = "INSERT INTO users (email, email2, pass1) VALUES('$e', '$e2', 'password_hash($p1, PASSWORD_DEFAULT)')";
 	if ($conn->query($sql) === TRUE) {
     echo "true";
 	} else {
