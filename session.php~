@@ -36,7 +36,6 @@
 				#Check whether entered password is equal to stored password after hashing.
 				if($row["pass1"] === $sessionPass){
 					$match = true;
-					echo "true";
 					break;
 				}
 			}
