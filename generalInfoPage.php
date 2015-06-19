@@ -70,8 +70,11 @@
 			
 			var result = "<table class='table table-hover'> <thead><tr><th>Attribute</th><th>Value</th> </tr></thead><tbody>";
 			
-			for(var i  = 0; i < info.length; i++){
-				var tmp = info[i].split(':');
+			var tmp = info[0].split(':');
+			result= result + "<tr><td> Date </td><td>"+ new Date(parseInt(tmp[1])) + "</td></tr>";
+			
+			for(var i  = 1; i < info.length; i++){
+				tmp = info[i].split(':');
 				result= result + "<tr><td>"+ tmp[0] +"</td><td>"+ tmp[1] + "</td></tr>";
 			}
 			
