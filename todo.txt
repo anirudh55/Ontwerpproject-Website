@@ -1,9 +1,10 @@
 Luuk is noob
 
 1. Hash the passwords = done?
-2. When no component is selected the entire module disappears
+2. Done. However, when a user selects no component, there should be no options in the export page (When no component is selected the entire module disappears)
 3. Change layout of export page
-4. When two dates are selected for export, the endDate should be later then startDate
+4. Done in case the user selects through table. (When two dates are selected for export, the endDate should be later then startDate)
 5. In the general info page, add a row stating the component name, and its ip address. 
 6. Move 'My Account' in the nav-bar to the right
-7. Easter egg challenge: find and remove the hidden debug messages. (Hint: They are all over the place)
+7. Register and update form, add @ symbol.
+8. Easter egg challenge: find and remove the hidden debug messages. (Hint: They are all over the place)

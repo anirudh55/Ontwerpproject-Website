@@ -67,7 +67,7 @@ include_once('session.php');
 		//	param = param.concat(str);
 		//	document.getElementById('main').innerHTML = "Upper param test: "+param + "<br>";
 				if(str=="empty"){
-					document.getElementById('main').innerHTML = "";
+				//	document.getElementById('main').innerHTML = "";
 				}else{
 		//	document.getElementById('main').innerHTML = str + "<br>";
 					if(str ==""){
@@ -136,7 +136,7 @@ include_once('session.php');
 			
 			downl = downl + "</div>";
 			downl = downl + "<br> <strong>Please enter a starting and ending date. It is possible to select rows in the table to automatically fill in these fields. </strong> ";
-			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button> <br>";
+			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button> <p id='exportStatus"+count+ "' class=\"text-warning\"></p> <br>";
 			
 			var tmp2 = "advancedOptions" + count;
 			document.getElementById(tmp2).innerHTML = downl;
@@ -263,6 +263,10 @@ include_once('session.php');
 				if(document.getElementById(beginDate).value === ""){
 					document.getElementById(beginDate).value = data.getValue(row, 0).toString();
 				} else if(document.getElementById(endDate).value === ""){
+						var msg_div = 'exportStatus' + count;
+						if(new Date(document.getElementById(beginDate).value).getTime() > new Date(data.getValue(row, 0).toString()).getTime()){	//If the endDate is smaller than beginDate, don't fill in field
+							document.getElementById(msg_div).innerHTML = "The end date should not be smaller than the begin date.";
+						} else
 						document.getElementById(endDate).value = data.getValue(row, 0).toString();
 				}
 			});
@@ -346,7 +350,7 @@ include_once('session.php');
 				  var tmp = "downloadButton" + count;
 				//  document.getElementById(tmp).innerHTML = xmlhttp.responseText;
 			//	  document.getElementById(tmp).innerHTML = "Create download button";
-			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-danger'>Download</button></a>";
+			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-success'>Download</button></a>";
 				if(Boolean(xmlhttp.responseText)){
 					
 						

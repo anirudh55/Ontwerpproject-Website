@@ -83,7 +83,7 @@
 									arg1[i] = parseInt(arg1[i]);
 									arg2[i] = parseInt(arg2[i]);
 								}
-								document.getElementById('download_div').innerHTML = "<ul id='download_button' class='list-group'><li class='list-group-item'><button class='btn btn-primary' onclick='createDownload()'>Generate JSON File</button></li></ul>";
+								document.getElementById('download_div').innerHTML = "<ul id='download_button' class='list-group'><li class='list-group-item'><button class='btn btn-link' onclick='createDownload()'>Generate JSON File</button></li></ul>";
 								drawChart(arg1,arg2, component, attribute);
 							
 						}
