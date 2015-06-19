@@ -1,8 +1,6 @@
 <?php
 	include_once('session.php');
 
-	echo "hoi";
-
 	#Connect to database
 	include_once('includeUser.php');
 
@@ -31,7 +29,7 @@
 		#Retrieve data from each row.
 		while($row = $result->fetch_assoc()) {
 			#If database contains email.
-			if($row["email"]==$e){
+			if($row["email"] === $e){
 				#Match is true.
 				$match = true;
 				break;
@@ -56,7 +54,7 @@
 	} else{
 		$p1 = password_hash($p1, PASSWORD_DEFAULT);
 		$sql = "INSERT INTO users (email, email2, pass1) VALUES('$e', '$e2', '$p1')";
-		if ($conn->query($sql) === TRUE) {
+		if ($conn->query($sql) === true) {
 	    		echo "true";
 		} else {
 			echo "Error: " . $sql . "<br>" . $conn->error;

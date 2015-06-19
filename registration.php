@@ -63,15 +63,15 @@
 				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 				  }
 				xmlhttp.onreadystatechange=function(){
-					document.getElementById('status').innerHTML = "Status: " + xmlhttp.responseText;
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					document.getElementById('status').innerHTML = "Status: " + xmlhttp.responseText;
 					{
 						var tmp = xmlhttp.responseText;
 
 						if(tmp === "true"){
-							document.getElementById('status').innerHTML = "Succesfully registered a new email address";
+							//document.getElementById('status').innerHTML = "Succesfully registered a new email address";
 						}	else { 
-							document.getElementById("status").innerHTML= "Registration failed: " + tmp;
+							//document.getElementById("status").innerHTML= "Registration failed: " + tmp;
 						}
 					}
 				  }

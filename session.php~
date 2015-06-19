@@ -40,6 +40,7 @@
 				}
 			}
 		}
+		$conn2->close();
 	}
 
 	#If session does not match, redirect to login page.
