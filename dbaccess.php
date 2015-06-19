@@ -135,7 +135,8 @@ include_once('session.php');
 			document.getElementById(tmp).innerHTML = output; 
 			
 			downl = downl + "</div>";
-			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <br> End date: <input id ='endDate" +count + "' type='text'> <br>";
+			downl = downl + "<br> <strong>Please enter a starting and ending date. It is possible to select rows in the table to automatically fill in these fields. </strong> ";
+			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button> <br>";
 			
 			var tmp2 = "advancedOptions" + count;
 			document.getElementById(tmp2).innerHTML = downl;
@@ -255,8 +256,26 @@ include_once('session.php');
 			tmp  = "table_div"  + count;
 			var table = new google.visualization.Table(document.getElementById(tmp));
         	table.draw(data, {'showRowNumber': true, 'height': 300, sort: 'enable'});
+			google.visualization.events.addListener(table, 'select', function(){
+				var beginDate = "beginDate" + count; 
+				var endDate = "endDate" + count;
+				var row = table.getSelection()[0].row;
+				if(document.getElementById(beginDate).value === ""){
+					document.getElementById(beginDate).value = data.getValue(row, 0).toString();
+				} else if(document.getElementById(endDate).value === ""){
+						document.getElementById(endDate).value = data.getValue(row, 0).toString();
+				}
+			});
 
 		}
+		
+		function selectHandler(e){
+			document.getElementById('table_info').innerHTML = 'Hey' + e['Date'];
+			var selection = table.getSelection().length;
+	//		document.getElementById('table_info').innerHTML = selection;
+			
+		}
+		
 		//Checks how many components are in the database, and lists them in a drop down menu. When a user clicks on them it calls the primaryMenu() function. 
 		function generateListOfComponents(){
 			if (window.XMLHttpRequest) {
@@ -395,6 +414,7 @@ include_once('session.php');
 </div>  -->
 		<!--Testing div-->
 		<div id="tmp"></div>
+		<div id="table_info">Test</div>
 </div>
 		
 	</body>

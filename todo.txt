@@ -1,6 +1,9 @@
 Luuk is noob
 
-1. Hash the passwords
+1. Hash the passwords = done?
 2. When no component is selected the entire module disappears
-3. Add component information
-
+3. Change layout of export page
+4. When two dates are selected for export, the endDate should be later then startDate
+5. In the general info page, add a row stating the component name, and its ip address. 
+6. Move 'My Account' in the nav-bar to the right
+7. Easter egg challenge: find and remove the hidden debug messages. (Hint: They are all over the place)
