@@ -14,9 +14,11 @@ include_once('session.php');
 	<title>My webpage</title>
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="custom.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
@@ -136,7 +138,7 @@ include_once('session.php');
 			
 			downl = downl + "</div>";
 			downl = downl + "<br> <strong>Please enter a starting and ending date. It is possible to select rows in the table to automatically fill in these fields. </strong> ";
-			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button> <p id='exportStatus"+count+ "' class=\"text-warning\"></p> <br>";
+			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button class=\"btn  btn-primary btn-xs\" onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button class=\"btn  btn-primary btn-xs\" onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button > <p id='exportStatus"+count+ "' class=\"text-warning\"></p> <br>";
 			
 			var tmp2 = "advancedOptions" + count;
 			document.getElementById(tmp2).innerHTML = downl;
