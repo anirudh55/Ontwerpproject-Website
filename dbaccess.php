@@ -260,7 +260,7 @@ include_once('session.php');
 		//Checks how many components are in the database, and lists them in a drop down menu. When a user clicks on them it calls the primaryMenu() function. 
 		function generateListOfComponents(){
 			if (window.XMLHttpRequest) {
-				// code for IE7+, Firefox, Chrome, Opera, Safari
+				// code for IE7+, Firefox, Chrome, Opera, Safarit
 				xmlhttp=new XMLHttpRequest();
 			  } else {  // code for IE6, IE5
 				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
@@ -349,52 +349,6 @@ include_once('session.php');
 		}
 		
 		
-		function selectComponentGeneral(){
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				  {// code for IE7+, Firefox, Chrome, Opera, Safari
-				  xmlhttp=new XMLHttpRequest();
-				  }
-				else
-				  {// code for IE6, IE5
-				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				  }
-				xmlhttp.onreadystatechange=function()
-				  {
-				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-					document.getElementById("main2").innerHTML=xmlhttp.responseText;
-					}
-				  }
-				xmlhttp.open("GET","generalInfo.php?t=" + Math.random(),true);
-				xmlhttp.send();
-		}
-		
-		function generateGeneralInfo(){
-				var tname = document.getElementById('generalBox').value;
-			//	document.getElementById('tmp').innerHTML = tmp;
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				  {// code for IE7+, Firefox, Chrome, Opera, Safari
-				  xmlhttp=new XMLHttpRequest();
-				  }
-				else
-				  {// code for IE6, IE5
-				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				  }
-				xmlhttp.onreadystatechange=function()
-				  {
-				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-					document.getElementById("main2").innerHTML=xmlhttp.responseText;
-					}
-				  }
-				xmlhttp.open("POST","generalInfo.php",true);
-				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("tname="+tname);
-				
-		}
-		
 	</script>
 	</head>
 	<body>
@@ -407,29 +361,38 @@ include_once('session.php');
 		<p>Click on +Graph to open a new module. Select the desired components to display their basic information.</p>
 	</div>
 	
-	<!--Tabs-->
+	<div id ="detailedInfo">
+		<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
+		<div id="main">
+		</div>
+	</div>	
+	
+	<!--Tabs
 	
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#detailedInfo" data-toggle='tab'>Detailed information</a></li>
 		<li><a href="#generalInfo" data-toggle='tab'>General information</a></li>
 	</ul>
 	
-<div class="tab-content">
-	<!--Graphs, downloads, etc. -->
-	<div id ="detailedInfo" class="tab-pane fade active in">
-		<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
-		<div id="main">
-		</div>
-	</div>			
+	-->
+	
+<!-- <div class="tab-content">
+	<!--Graphs, downloads, etc.
 			
-	<!--General info -->
+			
+	<!--General info 
 	<div id="generalInfo" class="fade">
 		Select a component: 
 		<div id="main2">
+		
 			<script>selectComponentGeneral();</script>
+			
+			
+		</div>
+		<div id="genInfo">General information will appear here
 		</div>
 	</div>
-</div>
+</div>  -->
 		<!--Testing div-->
 		<div id="tmp"></div>
 </div>
