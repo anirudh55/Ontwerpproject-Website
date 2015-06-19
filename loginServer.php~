@@ -17,7 +17,7 @@
 	#Actual password and input password don't match.
 	$match = false;
 	#Retrieve email1 and password from users.
-	$sql = "SELECT password FROM users WHERE email1 = '" .$e ."'";
+	$sql = "SELECT pass1 FROM users WHERE email = '" .$e ."'";
 	#Execute query
 	$result = $conn->query($sql);
 
@@ -26,9 +26,9 @@
 		#Iterate over rows
    		while($row = $result->fetch_assoc()) {
 			#Check whether entered password is equal to stored password after hashing.
-			echo password_verify($p, $row["password"]);
-			if(password_verify($p, $row["password"])){
-				$p = $row["password"];
+			echo password_verify($p, $row["pass1"]);
+			if(password_verify($p, $row["pass1"])){
+				$p = $row["pass1"];
 				$match = true;
 				break;
 			}
@@ -40,7 +40,7 @@
 
 if($match){	//exists
 	$_SESSION['email']  = $e;
-	$_SESSION['password'] = $p;
+	$_SESSION['pass1'] = $p;
 	//header("location: dbaccess.php");
 	echo true;
 } else{
