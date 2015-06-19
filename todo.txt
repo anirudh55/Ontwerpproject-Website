@@ -1,6 +1,6 @@
 Luuk is noob
 
 1. Hash the passwords
-2. Make table scrollable
+2. When no component is selected the entire module disappears
 3. Add component information
-4. Invert table, so that most recent is on top
+

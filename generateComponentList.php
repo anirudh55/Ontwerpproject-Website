@@ -29,7 +29,7 @@ echo "<ul class = \"nav nav-tabs\">
 							echo "<select id= \"selectBox{$count}\" onchange=\"primaryMenu({$count});\">" ;
 							echo "<option value='empty'></option>";
 								for($i = 0; $i < count($tables); $i++){
-										echo "<option value=\"$tables[$i]\">Worker $i - $tables[$i] </option>";
+										echo "<option value=\"$tables[$i]\">Component $i - $tables[$i] </option>";
 								}
 							echo "</select>";
 				echo "<div id=\"secondMenu{$count}\">Second menu</div>

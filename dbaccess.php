@@ -353,6 +353,52 @@ if(!isset($_SESSION["email"])){
 		}
 		
 		
+		function selectComponentGeneral(){
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function()
+				  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+					document.getElementById("main2").innerHTML=xmlhttp.responseText;
+					}
+				  }
+				xmlhttp.open("GET","generalInfo.php?t=" + Math.random(),true);
+				xmlhttp.send();
+		}
+		
+		function generateGeneralInfo(){
+				var tname = document.getElementById('generalBox').value;
+			//	document.getElementById('tmp').innerHTML = tmp;
+				var xmlhttp;
+				if (window.XMLHttpRequest)
+				  {// code for IE7+, Firefox, Chrome, Opera, Safari
+				  xmlhttp=new XMLHttpRequest();
+				  }
+				else
+				  {// code for IE6, IE5
+				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				  }
+				xmlhttp.onreadystatechange=function()
+				  {
+				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+					document.getElementById("main2").innerHTML=xmlhttp.responseText;
+					}
+				  }
+				xmlhttp.open("POST","generalInfo.php",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("tname="+tname);
+				
+		}
+		
 	</script>
 	</head>
 	<body>
@@ -384,7 +430,7 @@ if(!isset($_SESSION["email"])){
 	<div id="generalInfo" class="fade">
 		Select a component: 
 		<div id="main2">
-			
+			<script>selectComponentGeneral();</script>
 		</div>
 	</div>
 </div>
