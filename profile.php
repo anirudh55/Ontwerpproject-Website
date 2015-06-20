@@ -94,7 +94,6 @@
 						document.getElementById('email1').value = tmp[0];
 						document.getElementById('email2').value = tmp[1];
 						
-						document.getElementById('tmp').innerHTML = tmp;
 					}
 				  }
 				xmlhttp.open("POST","update.php",true);
@@ -128,7 +127,6 @@
 		</form>
 		<button class="btn btn-warning" onclick="save()">Save changes</button>
 		<div id="status"></div>
-		<span id="tmp">tmp</span>
 		<script>getEmails()</script>
 	</div>
 </body>

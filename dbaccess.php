@@ -63,7 +63,6 @@ include_once('session.php');
     		var str = selectBox.options[selectBox.selectedIndex].value;
 			var tableName = selectBox.options[selectBox.selectedIndex].value;
 			tableNames[count] = tableName;
-			document.getElementById('tmp').innerHTML = tableNames[count]; //TODO: can be deleted
 			
 			var param = "wname="+str;
 		//	param = param.concat(str);
@@ -73,7 +72,7 @@ include_once('session.php');
 				}else{
 		//	document.getElementById('main').innerHTML = str + "<br>";
 					if(str ==""){
-						document.getElementById('main').innerHTML = "Empty stuff";
+						document.getElementById('main').innerHTML = /*"Empty stuff"*/ "";
 						return;
 					} else{
 						 if (window.XMLHttpRequest) {
@@ -125,7 +124,7 @@ include_once('session.php');
 				var ar = resp.split(',');
 				var tmp = "selectBoxSecondary" + count;
 				var output = "<select id = \"" + tmp +  "\" onchange= \"setColumn(" + count + ",false) \" name=\"" + tableName + "\">";
-					output = output+ "<option></option>";
+					output = output+ "<option>Please select an attribute: </option>";
 			for(var i = 2; i < ar.length - 1; i++){
 				ar[i].trim();
 				output = output + "<option value=\"" + ar[i] + "\">" + ar[i] + "</option>";
@@ -133,7 +132,7 @@ include_once('session.php');
 				downl = downl + "<label class=\"checkbox-inline\"><input class=\"checkbox"+count+"\" type=\"checkbox\" value=\"" + ar[i] + "\">" + ar[i] + "</label>";
 			}
 			output = output + "</select>";
-			tmp = "secondMenu" + count; 
+			tmp = "secondMenu" + count;
 			document.getElementById(tmp).innerHTML = output; 
 			
 			downl = downl + "</div>";
@@ -155,8 +154,6 @@ include_once('session.php');
     		var colName = selectBox.options[selectBox.selectedIndex].value;
 				setColumnName(colName);
 			columnNames[count] = colName;
-		//	document.getElementById('tmp').innerHTML = columnNames[count]; //TODO: can be deleted
-			document.getElementById('tmp').innerHTML = "Type of download: " + download  + typeof(download.toString()); //TODO: can be deleted
 			
 			var param= "colName=" + columnNames[count] + "&tableName="+tableNames[count]+ "&download=" + download.toString();
 			
@@ -169,7 +166,7 @@ include_once('session.php');
 				}else{
 		//	document.getElementById('thirdMenu').innerHTML = colName + "<br>";
 					if(colName ==""){
-						document.getElementById(tmp).innerHTML = "Empty stuff";
+						document.getElementById(tmp).innerHTML = /*"Empty stuff"*/"";
 						return;
 					} else{
 						 if (window.XMLHttpRequest) {
@@ -361,7 +358,6 @@ include_once('session.php');
 			  }
 			xmlhttp.open("POST","dbDownloadTable.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			document.getElementById('tmp').innerHTML = "tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate;
 			xmlhttp.send("tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate);
 
 			/*
@@ -420,7 +416,7 @@ include_once('session.php');
 </div>  -->
 		<!--Testing div-->
 		<div id="tmp"></div>
-		<div id="table_info">Test</div>
+		<!--<div id="table_info">Test</div>-->
 </div>
 		
 	</body>

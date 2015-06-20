@@ -198,9 +198,10 @@
 					</ul>
 					
 					<div class="tab-content">
-						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
+<!--						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
 						<div class="tab-pane fade" id="table_div">Table data</div>
 						<div class="tab-pane fade" id="download_div">Download data</div> 
+-->
 					</div>
 					
 				</div>

@@ -1,15 +1,12 @@
 <?php
-	session_start();
-if(!isset($_SESSION["email"])){
-	header("location: login.php");
-	exit();
-}
+	include_once('session.php');
 ?>
 <html>
 	<head><title>DNS - Jedi</title> 
 			 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="custom.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<!--Load the AJAX API-->
@@ -87,7 +84,7 @@ if(!isset($_SESSION["email"])){
 									arg1[i] = parseInt(arg1[i]);
 									arg2[i] = parseInt(arg2[i]);
 								}
-								document.getElementById('download_div').innerHTML = "<ul id='download_button' class='list-group'><li class='list-group-item'><button class='btn btn-primary' onclick='createDownload()'>Generate JSON File</button></li></ul>";
+								document.getElementById('download_div').innerHTML = "<ul id='download_button' class='list-group'><li class='list-group-item'><button class='btn btn-link' onclick='createDownload()'>Generate JSON File</button></li></ul>";
 								drawChart(arg1,arg2, component, attribute);
 							
 						}
@@ -201,9 +198,10 @@ if(!isset($_SESSION["email"])){
 					</ul>
 					
 					<div class="tab-content">
-						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
+<!--						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
 						<div class="tab-pane fade" id="table_div">Table data</div>
 						<div class="tab-pane fade" id="download_div">Download data</div> 
+-->
 					</div>
 					
 				</div>

@@ -23,12 +23,12 @@ echo "<ul class = \"nav nav-tabs\">
 </ul>" ; 
 
 							echo "<select id= \"selectBox{$count}\" onchange=\"primaryMenu({$count});\">" ;
-							echo "<option value='empty'></option>";
+							echo "<option value='empty'>Please select a component: </option>";
 								for($i = 0; $i < count($tables); $i++){
 										echo "<option value=\"$tables[$i]\">Component $i - $tables[$i] </option>";
 								}
 							echo "</select>";
-				echo "<div id=\"secondMenu{$count}\">Second menu</div>
+				echo "<div id=\"secondMenu{$count}\"></div>
 				<div id=\"thirdMenu{$count}\"></div>
 			<div class=\"tab-content\">	
 				<div class=\"tab-pane fade active in\" id=\"chart_div{$count}\" style=\"width:400; height:300\"></div> 

@@ -1,14 +1,11 @@
 <?php
-	session_start();
-	if(!isset($_SESSION['email'])){
-	   header("location: login.php");
-		exit();
-	}
+	include_once('session.php');
 ?>
 <html><head><title>My Account</title>
 		<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="custom.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<!--Load the AJAX API-->
@@ -97,7 +94,7 @@
 						document.getElementById('email1').value = tmp[0];
 						document.getElementById('email2').value = tmp[1];
 						
-						document.getElementById('tmp').innerHTML = tmp;
+						//document.getElementById('tmp').innerHTML = tmp;
 					}
 				  }
 				xmlhttp.open("POST","update.php",true);

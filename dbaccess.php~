@@ -14,9 +14,11 @@ include_once('session.php');
 	<title>My webpage</title>
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="custom.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
 	<!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
@@ -61,17 +63,16 @@ include_once('session.php');
     		var str = selectBox.options[selectBox.selectedIndex].value;
 			var tableName = selectBox.options[selectBox.selectedIndex].value;
 			tableNames[count] = tableName;
-			document.getElementById('tmp').innerHTML = tableNames[count]; //TODO: can be deleted
 			
 			var param = "wname="+str;
 		//	param = param.concat(str);
 		//	document.getElementById('main').innerHTML = "Upper param test: "+param + "<br>";
 				if(str=="empty"){
-					document.getElementById('main').innerHTML = "";
+				//	document.getElementById('main').innerHTML = "";
 				}else{
 		//	document.getElementById('main').innerHTML = str + "<br>";
 					if(str ==""){
-						document.getElementById('main').innerHTML = "Empty stuff";
+						document.getElementById('main').innerHTML = /*"Empty stuff"*/ "";
 						return;
 					} else{
 						 if (window.XMLHttpRequest) {
@@ -123,7 +124,7 @@ include_once('session.php');
 				var ar = resp.split(',');
 				var tmp = "selectBoxSecondary" + count;
 				var output = "<select id = \"" + tmp +  "\" onchange= \"setColumn(" + count + ",false) \" name=\"" + tableName + "\">";
-					output = output+ "<option></option>";
+					output = output+ "<option>Please select an attribute: </option>";
 			for(var i = 2; i < ar.length - 1; i++){
 				ar[i].trim();
 				output = output + "<option value=\"" + ar[i] + "\">" + ar[i] + "</option>";
@@ -131,11 +132,12 @@ include_once('session.php');
 				downl = downl + "<label class=\"checkbox-inline\"><input class=\"checkbox"+count+"\" type=\"checkbox\" value=\"" + ar[i] + "\">" + ar[i] + "</label>";
 			}
 			output = output + "</select>";
-			tmp = "secondMenu" + count; 
+			tmp = "secondMenu" + count;
 			document.getElementById(tmp).innerHTML = output; 
 			
 			downl = downl + "</div>";
-			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <br> End date: <input id ='endDate" +count + "' type='text'> <br>";
+			downl = downl + "<br> <strong>Please enter a starting and ending date. It is possible to select rows in the table to automatically fill in these fields. </strong> ";
+			downl = downl + "<br> Start date: <input id ='beginDate"+ count + "' type='text'> <button class=\"btn  btn-primary btn-xs\" onclick=\"document.getElementById('beginDate"+count+"').value=''\">Clear</button> <br> End date: <input id ='endDate" +count + "' type='text'><button class=\"btn  btn-primary btn-xs\" onclick=\"document.getElementById('endDate"+count+"').value=''\">Clear</button > <p id='exportStatus"+count+ "' class=\"text-warning\"></p> <br>";
 			
 			var tmp2 = "advancedOptions" + count;
 			document.getElementById(tmp2).innerHTML = downl;
@@ -152,8 +154,6 @@ include_once('session.php');
     		var colName = selectBox.options[selectBox.selectedIndex].value;
 				setColumnName(colName);
 			columnNames[count] = colName;
-		//	document.getElementById('tmp').innerHTML = columnNames[count]; //TODO: can be deleted
-			document.getElementById('tmp').innerHTML = "Type of download: " + download  + typeof(download.toString()); //TODO: can be deleted
 			
 			var param= "colName=" + columnNames[count] + "&tableName="+tableNames[count]+ "&download=" + download.toString();
 			
@@ -166,7 +166,7 @@ include_once('session.php');
 				}else{
 		//	document.getElementById('thirdMenu').innerHTML = colName + "<br>";
 					if(colName ==""){
-						document.getElementById(tmp).innerHTML = "Empty stuff";
+						document.getElementById(tmp).innerHTML = /*"Empty stuff"*/"";
 						return;
 					} else{
 						 if (window.XMLHttpRequest) {
@@ -255,12 +255,34 @@ include_once('session.php');
 			tmp  = "table_div"  + count;
 			var table = new google.visualization.Table(document.getElementById(tmp));
         	table.draw(data, {'showRowNumber': true, 'height': 300, sort: 'enable'});
+			google.visualization.events.addListener(table, 'select', function(){
+				var beginDate = "beginDate" + count; 
+				var endDate = "endDate" + count;
+				var row = table.getSelection()[0].row;
+				if(document.getElementById(beginDate).value === ""){
+					document.getElementById(beginDate).value = data.getValue(row, 0).toString();
+				} else if(document.getElementById(endDate).value === ""){
+						var msg_div = 'exportStatus' + count;
+						if(new Date(document.getElementById(beginDate).value).getTime() > new Date(data.getValue(row, 0).toString()).getTime()){	//If the endDate is smaller than beginDate, don't fill in field
+							document.getElementById(msg_div).innerHTML = "The end date should not be smaller than the begin date.";
+						} else
+						document.getElementById(endDate).value = data.getValue(row, 0).toString();
+				}
+			});
 
 		}
+		
+		function selectHandler(e){
+			document.getElementById('table_info').innerHTML = 'Hey' + e['Date'];
+			var selection = table.getSelection().length;
+	//		document.getElementById('table_info').innerHTML = selection;
+			
+		}
+		
 		//Checks how many components are in the database, and lists them in a drop down menu. When a user clicks on them it calls the primaryMenu() function. 
 		function generateListOfComponents(){
 			if (window.XMLHttpRequest) {
-				// code for IE7+, Firefox, Chrome, Opera, Safari
+				// code for IE7+, Firefox, Chrome, Opera, Safarit
 				xmlhttp=new XMLHttpRequest();
 			  } else {  // code for IE6, IE5
 				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
@@ -327,7 +349,7 @@ include_once('session.php');
 				  var tmp = "downloadButton" + count;
 				//  document.getElementById(tmp).innerHTML = xmlhttp.responseText;
 			//	  document.getElementById(tmp).innerHTML = "Create download button";
-			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-danger'>Download</button></a>";
+			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-success'>Download</button></a>";
 				if(Boolean(xmlhttp.responseText)){
 					
 						
@@ -336,7 +358,6 @@ include_once('session.php');
 			  }
 			xmlhttp.open("POST","dbDownloadTable.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			document.getElementById('tmp').innerHTML = "tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate;
 			xmlhttp.send("tableName="+ tname + "&getColumns=" + cols + "&startDate=" + beginDate + "&endDate=" + endDate);
 
 			/*
@@ -348,52 +369,6 @@ include_once('session.php');
 			
 		}
 		
-		
-		function selectComponentGeneral(){
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				  {// code for IE7+, Firefox, Chrome, Opera, Safari
-				  xmlhttp=new XMLHttpRequest();
-				  }
-				else
-				  {// code for IE6, IE5
-				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				  }
-				xmlhttp.onreadystatechange=function()
-				  {
-				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-					document.getElementById("main2").innerHTML=xmlhttp.responseText;
-					}
-				  }
-				xmlhttp.open("GET","generalInfo.php?t=" + Math.random(),true);
-				xmlhttp.send();
-		}
-		
-		function generateGeneralInfo(){
-				var tname = document.getElementById('generalBox').value;
-			//	document.getElementById('tmp').innerHTML = tmp;
-				var xmlhttp;
-				if (window.XMLHttpRequest)
-				  {// code for IE7+, Firefox, Chrome, Opera, Safari
-				  xmlhttp=new XMLHttpRequest();
-				  }
-				else
-				  {// code for IE6, IE5
-				  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				  }
-				xmlhttp.onreadystatechange=function()
-				  {
-				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-					document.getElementById("main2").innerHTML=xmlhttp.responseText;
-					}
-				  }
-				xmlhttp.open("POST","generalInfo.php",true);
-				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("tname="+tname);
-				
-		}
 		
 	</script>
 	</head>
@@ -407,31 +382,41 @@ include_once('session.php');
 		<p>Click on +Graph to open a new module. Select the desired components to display their basic information.</p>
 	</div>
 	
-	<!--Tabs-->
+	<div id ="detailedInfo">
+		<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
+		<div id="main">
+		</div>
+	</div>	
+	
+	<!--Tabs
 	
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#detailedInfo" data-toggle='tab'>Detailed information</a></li>
 		<li><a href="#generalInfo" data-toggle='tab'>General information</a></li>
 	</ul>
 	
-<div class="tab-content">
-	<!--Graphs, downloads, etc. -->
-	<div id ="detailedInfo" class="tab-pane fade active in">
-		<button type="button" class="btn btn-primary" onclick="generateListOfComponents()">+Graph</button>
-		<div id="main">
-		</div>
-	</div>			
+	-->
+	
+<!-- <div class="tab-content">
+	<!--Graphs, downloads, etc.
 			
-	<!--General info -->
+			
+	<!--General info 
 	<div id="generalInfo" class="fade">
 		Select a component: 
 		<div id="main2">
+		
 			<script>selectComponentGeneral();</script>
+			
+			
+		</div>
+		<div id="genInfo">General information will appear here
 		</div>
 	</div>
-</div>
+</div>  -->
 		<!--Testing div-->
 		<div id="tmp"></div>
+		<!--<div id="table_info">Test</div>-->
 </div>
 		
 	</body>
