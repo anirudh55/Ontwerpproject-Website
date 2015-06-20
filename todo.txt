@@ -8,3 +8,4 @@ Luuk is noob
 6. Move 'My Account' in the nav-bar to the right
 7. Register and update form, add @ symbol.
 8. Easter egg challenge: find and remove the hidden debug messages. (Hint: They are all over the place)
+9. the table in the notifications can get very long, the scroll option should be added.
