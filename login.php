@@ -106,18 +106,18 @@
                         		</div>
                             </div>
                             <div class="form-bottom">
-			                    <form class="login-form">
+			                    <form class="login-form" method="post" onsubmit="return false;" action="">
 			                    	<div class="form-group">
 			                    		<label class="sr-only" for="email">Username</label>
-			                        	<input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="email">
+			                        	<input type="text" name="form-username" placeholder="Email..." class="form-username form-control" id="email">
 			                        </div>
 			                        <div class="form-group">
 			                        	<label class="sr-only" for="password">Password</label>
 			                        	<input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="password">
 			                        </div>
-									
+									<button class="btn" onclick="login()">Sign in!</button>
 			                    </form>
-								<button class="btn" onclick="login()">Sign in!</button>
+								
 		                    </div>
                         </div>
                     </div>
