@@ -6,16 +6,20 @@
 
 	#Retrieve email1, email2, password1 and password 2 from user.
 	#These are escaped to prevent SQL injections.
-	$e = mysqli_real_escape_string($conn, $_POST['e']);
-	$e2 = mysqli_real_escape_string($conn, $_POST['e2']);
+	$e = mysqli_real_escape_string($conn, $_POST['e']). "@". mysqli_real_escape_string($conn, $_POST['e2']);
+if($_POST['e4'] != 'undefined'){
+	$e2 = mysqli_real_escape_string($conn, $_POST['e3']) . "@" . mysqli_real_escape_string($conn, $_POST['e4']);
+} else {
+	$e2 = "";
+}
 	$p1 = mysqli_real_escape_string($conn, $_POST['p1']);
 	$p2 = mysqli_real_escape_string($conn, $_POST['p2']);
 
 	#Check if user input quotes.
-	if($e != $_POST['e'] || $e2 != $_POST['e2'] || $p1 != $_POST['p1'] ||$p2 != $_POST['p2']){
+	/*if($e != $_POST['e'] || $e2 != $_POST['e2'] || $p1 != $_POST['p1'] ||$p2 != $_POST['p2']){
 		echo "Please don't use any quotes: ";
 		exit();
-	}
+	}*/
 
 	#Currently no match of email.
 	$match = false;

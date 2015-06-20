@@ -45,13 +45,14 @@
 	//var x= 	emailCheck(); 
 	//	document.getElementById('extra').innerHTML = x + " type of result :   " + typeof(x);
 		if(true){
-			var e = document.getElementById('email').value;
-		//document.getElementById('extra').innerHTML = e + "type of e :   " + typeof(e);
+			var e = document.getElementById('email').value.split('@');
+		//document.getElementById('extra').innerHTML = e[0] +e[1] ;
+
 			var p1 = document.getElementById('pass1').value;
 			var p2 = document.getElementById('pass2').value;
-			var e2 = document.getElementById('email2').value;
+			var e2 = document.getElementById('email2').value.split('@');
 			//TODO Get e2!
-			if(e == "" || p1== "" || p2 == ""){
+			if(e[0] == "" || p1== "" || p2 == "" || e[1] == ""){
 				document.getElementById('status').innerHTML	= "Please fill out all the fields";
 			} else if(p1 != p2){
 				document.getElementById('status').innerHTML	= "The password fields do not match. ";
@@ -70,7 +71,11 @@
 						var tmp = xmlhttp.responseText;
 
 						if(tmp === "true"){
-							//document.getElementById('status').innerHTML = "Succesfully registered a new email address";
+							document.getElementById('status').innerHTML = "Succesfully registered a new email address";
+							document.getElementById('email').value = '';
+							document.getElementById('email2').value = '';
+							document.getElementById('pass1').value = '';
+							document.getElementById('pass2').value = '';
 						}	else { 
 							//document.getElementById("status").innerHTML= "Registration failed: " + tmp;
 						}
@@ -78,7 +83,7 @@
 				  }
 				xmlhttp.open("POST","register.php",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send("e="+e+"&p1="+p1+"&p2=" + p2 + "&e2=" + e2);
+				xmlhttp.send("e="+e[0]+"&p1="+p1+"&p2=" + p2 + "&e2=" + e[1] + "&e3=" + e2[0] + "&e4=" + e2[1]);
 			}
 			
 		} else {
@@ -133,37 +138,94 @@
 				<!--Adds the NAV bar --> 
 	<script src="globalLayout.js"></script>
 	
-		
+		<!--
 		<div class="container" id="myForm">
 		<form role="form" name="signupform" id="signupform">
 			<div class="form-group">
 				<label for="email">E-mail address: </label>
-				<input type="email" class="form-control" id="email"> <!-- onkeyup="restrict('email')" -->
+				<input type="email" class="form-control" id="email"> <!-- onkeyup="restrict('email')" 
 			</div>
 			<div class="form-group">
 				<label for="email2">Secondary E-mail address: </label>
-				<input type="email" class="form-control" id="email2" > <!--onkeyup="restrict('email2')" -->
+				<input type="email" class="form-control" id="email2" > <!--onkeyup="restrict('email2')"
 			</div>
 			<div class="form-group">
 				<label for="pass1">Password: </label>
-				<input type="password" class="form-control" id="pass1" maxlength="88" ><!--onkeyup="restrict('pass1')" -->
+				<input type="password" class="form-control" id="pass1" maxlength="88" ><!--onkeyup="restrict('pass1')" 
 			</div>
 			<div class="form-group">
 				<label for="pass2">Retype password: </label>
-				<input type="password" class="form-control" id="pass2" maxlength="88" ><!--onkeyup="restrict('pass2')" -->
+				<input type="password" class="form-control" id="pass2" maxlength="88" ><!--onkeyup="restrict('pass2')" 
 			</div>
 			<button type ="submit" class="btn btn-default" onclick="signUp()" >Submit</button>
 		</form>
+</div>
 				
+			-->
 			
-			<div id="test"></div>
+		
+		
+<div class="container-fluid" id="myForm">
+    <section class="container">
+		<div class="container-page">				
+			<div class="col-md-12">
+				<h3 class="dark-grey">Registration</h3>
+			<form class=\"form-inline\" onsubmit="return false;">	
+				<div class="form-group col-lg-12">
+					<label for="email">E-mail address: </label>
+					<input type="email" class="form-control" id="email">  <!-- onkeyup="restrict('email')" -->
+						
+					
+				</div>
+				
+				
+				
+				<div class="form-group col-lg-12">
+					<label for="email2">Secondary E-mail address: </label>
+					<input type="email" class="form-control" id="email2" >
+				</div>
+				
+				<div class="form-group col-lg-6">
+					<label for="pass1">Password: </label>
+					<input type="password" class="form-control" id="pass1" maxlength="88" ><!--onkeyup="restrict('pass1')" -->
+				</div>
+								
+				<div class="form-group col-lg-6">
+					<label for="pass2">Retype password: </label>
+					<input type="password" class="form-control" id="pass2" maxlength="88" ><!--onkeyup="restrict('pass2')" -->
+				</div>
+				<div class="form-group col-lg-6">
+				<button type ="submit" class="btn btn-default" onclick="signUp()" >Register</button>
+				</div>
+				
+			</form>
+			</div>
+		
+	<!--		<div class="col-md-6">
+				<h3 class="dark-grey">Terms and Conditions</h3>
+				<p>
+					By clicking on "Register" you agree to The Company's' Terms and Conditions
+				</p>
+				<p>
+					While rare, prices are subject to change based on exchange rate fluctuations - 
+					should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
+				</p>
+				<p>
+					Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
+				</p>
+				<p>
+					Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
+				</p>
+				
+				
+			</div> -->
+		</div>
+	</section>
+</div>
+		<div id="test"></div>
 			<div id="status" class="text-warning"></div>
 			<div id="signUp"></div>
 			
 			<div id='extra'></div>
-		</div>
-		
-		
-		
 	</body>
 </html>
