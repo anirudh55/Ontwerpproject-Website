@@ -5,11 +5,6 @@
 		$wname = strval($_POST['wname']);
 		$wwname = $_POST['wname'];
 		
-/*		$servername = "localhost";
-	$username = "anna";
-	$password = "karenina";
-	$dbname = "detail"; */
-
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection

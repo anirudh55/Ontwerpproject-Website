@@ -60,7 +60,7 @@ include_once('session.php');
 		function primaryMenu(count){
 			var tmp = "selectBox" + count; 
 			var selectBox = document.getElementById(tmp);
-    		var str = selectBox.options[selectBox.selectedIndex].value;
+    			var str = selectBox.options[selectBox.selectedIndex].value;
 			var tableName = selectBox.options[selectBox.selectedIndex].value;
 			tableNames[count] = tableName;
 			
