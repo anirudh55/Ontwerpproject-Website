@@ -122,7 +122,7 @@
 			
 		
 			var table = new google.visualization.Table(document.getElementById('table_div'));
-        	table.draw(data, {showRowNumber: true});
+        	table.draw(data, {showRowNumber: true, height:300, sort:'enable'});
 		
 
 		}
@@ -198,10 +198,10 @@
 					</ul>
 					
 					<div class="tab-content">
-<!--						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
+						<div class="tab-pane fade active in" id="chart_div">Graph data</div>
 						<div class="tab-pane fade" id="table_div">Table data</div>
 						<div class="tab-pane fade" id="download_div">Download data</div> 
--->
+
 					</div>
 					
 				</div>

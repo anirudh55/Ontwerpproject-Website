@@ -35,8 +35,8 @@
 	}else {
   		echo "0 results";
 	}
-
-	$conn->close();
+	$e = "Thijs";
+	$p = "$2y$10$jqTnXtgJfwBr4L1snH2ykeWrtaYy7Q6xOryg41SRDTuW9hel.fEAG";
 
 	if($match){	//exists
 		$_SESSION['email']  = $e;
