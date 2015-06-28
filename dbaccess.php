@@ -315,8 +315,6 @@ include_once('session.php');
 			  	}	
 			xmlhttp.onreadystatechange=function() {
 				if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				//  document.getElementById("main").innerHTML=xmlhttp.responseText;
-				//	document.getElementById('main').appendChild(document.createTextNode(xmlhttp.responseText)); 
 					$(document).ready(function(){
 							$("#main").append(xmlhttp.responseText);
 					});
@@ -333,9 +331,10 @@ include_once('session.php');
 			});
 		}
 		
+		/*
+			Sends a download request to the server. 
+		*/
 		function downloadGraph(count){
-			
-			
 			var cols = "";
 			var chckbx = "checkbox" + count;
 			$.each($("input[class='"+ chckbx + "']:checked"), function(){ //loop through each checkbox
@@ -368,9 +367,7 @@ include_once('session.php');
 			xmlhttp.onreadystatechange=function()  {
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200){
 				  var tmp = "downloadButton" + count;
-				//  document.getElementById(tmp).innerHTML = xmlhttp.responseText;
-			//	  document.getElementById(tmp).innerHTML = "Create download button";
-			  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-success'>Download</button></a>";
+				  document.getElementById(tmp).innerHTML = "<a href='results.json' download><button class='btn btn-success'>Download</button></a>";
 				if(Boolean(xmlhttp.responseText)){
 					
 						
