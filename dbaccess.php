@@ -11,7 +11,7 @@ include_once('session.php');
   width:100%;
 }</style>-->
 	
-	<title>My webpage</title>
+	<title>Graphing tools</title>
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -23,14 +23,19 @@ include_once('session.php');
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	
 	
-	
+	<!--The java script containing the functions -->
 	<script type="text/javascript">
+		
+		/* Used to store the name of the components and the attributes*/
+				
 		var tableNames = [];
 		var columnNames = [];
 		
 		//Count number of graphs loaded
 		var graphCounter = 0;
+		
 		//Set variables
+		// The name of the attribue
 		var columnName = "My Graph";
 		var columnDate = [0];
 		var currentTable = "";
