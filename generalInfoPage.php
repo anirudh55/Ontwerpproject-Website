@@ -1,5 +1,6 @@
 <html><head><title>General Information</title>
 	
+	<!-- This page displays information on the latest entries of components -->
 	
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +41,9 @@
       		// Set a callback to run when the Google Visualization API is loaded.
       		google.setOnLoadCallback(setColumn);
 	
-	
+		/*
+			This function generates a dropdown menu listing all the components.
+		*/
 		function selectComponentGeneral(){
 				var xmlhttp;
 				if (window.XMLHttpRequest)
@@ -62,11 +65,13 @@
 				xmlhttp.send();
 		}
 		
+		/*
+			This function takes a component and retrieves its latest entries. 
+		*/
 		function generateGeneralInfo(){
 				var tname = document.getElementById('generalBox').value;
 			
 			if(tname != 'null'){
-			//	document.getElementById('tmp').innerHTML = tmp;
 				var xmlhttp;
 				if (window.XMLHttpRequest)
 				  {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -80,7 +85,7 @@
 				  {
 				  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
-						parseInformation(xmlhttp.responseText);
+						parseInformation(xmlhttp.responseText);			//Sends the respons to be parsed to a table
 					}
 				  }
 				xmlhttp.open("POST","generalInfo.php",true);
@@ -93,6 +98,9 @@
 				
 		}
 		
+		/*
+				This function takes the information retrieved from the server and puts it into a table.
+		*/
 		function parseInformation(information){
 				var info = information.toString();
 				info = info.replace(/['" /{ /} /[ ]+/g, '');
@@ -114,7 +122,8 @@
 			result = result + "</tbody></table>";
 			document.getElementById('information').innerHTML = result;
 		}
-
+	
+	
 		function setColumn(colName){
 			var tName = document.getElementById("generalBox").value;
 			setTable(tName);
@@ -202,13 +211,7 @@
 	
 		<script>selectComponentGeneral();	</script>
 		<h3>Please select a component</h3>
-		<div id="main">
 		
-		</div>
-		<div id="information">
-		
-		</div>
-
 		<div id="container">
 			<div class="row">
 				<div class="col-xs-4">
@@ -222,6 +225,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<div id="main">
+		
+		</div>
+		<div id="information">
+		
+		</div>
+
+		
 		<div id="test">
 			</div>
 	</div>

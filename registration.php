@@ -17,12 +17,13 @@
 	
 	<script>
 	
-		
+		//Debuggin function. 
 	function testFunc(){
 		document.getElementById('test').innerHTML = "Its working";
 		return false;
 	}
 		
+		//This function is not used anymore. This function restricts users from entering certain characters in the input fields. 
 	function restrict(elem){
 	var tf = document.getElementById(elem);
 	var test = tf.value;
@@ -36,22 +37,21 @@
 		if(tf.value != test){document.getElementById('status').innerHTML = "Please don't use any quotes."}
 		//document.getElementById('test').innerHTML = tf.value;
 	}
-		
-	//////The following two function contain a bug, and because of this the registration page does not work. The following funcitons are never called. 
 
-		
+
+		/*
+			When the user clicks signup, this function quickly checks whether all fields have been filled in and whether the passwords match.
+			It then sends the information to the server. The server will either sucessfully add the new user, or give an error if something goes wrong.
+			The server will again check whether the passwords match and remove and malicious code. 
+		*/
 	function signUp(){
 			
-	//var x= 	emailCheck(); 
-	//	document.getElementById('extra').innerHTML = x + " type of result :   " + typeof(x);
 		if(true){
 			var e = document.getElementById('email').value.split('@');
-		//document.getElementById('extra').innerHTML = e[0] +e[1] ;
 
 			var p1 = document.getElementById('pass1').value;
 			var p2 = document.getElementById('pass2').value;
 			var e2 = document.getElementById('email2').value.split('@');
-			//TODO Get e2!
 			if(e[0] == "" || p1== "" || p2 == "" || e[1] == ""){
 				document.getElementById('status').innerHTML	= "Please fill out all the fields";
 			} else if(p1 != p2){
@@ -77,7 +77,6 @@
 							document.getElementById('pass1').value = '';
 							document.getElementById('pass2').value = '';
 						}	else { 
-							//document.getElementById("status").innerHTML= "Registration failed: " + tmp;
 						}
 					}
 				  }
@@ -138,32 +137,6 @@
 				<!--Adds the NAV bar --> 
 	<script src="globalLayout.js"></script>
 	
-		<!--
-		<div class="container" id="myForm">
-		<form role="form" name="signupform" id="signupform">
-			<div class="form-group">
-				<label for="email">E-mail address: </label>
-				<input type="email" class="form-control" id="email"> <!-- onkeyup="restrict('email')" 
-			</div>
-			<div class="form-group">
-				<label for="email2">Secondary E-mail address: </label>
-				<input type="email" class="form-control" id="email2" > <!--onkeyup="restrict('email2')"
-			</div>
-			<div class="form-group">
-				<label for="pass1">Password: </label>
-				<input type="password" class="form-control" id="pass1" maxlength="88" ><!--onkeyup="restrict('pass1')" 
-			</div>
-			<div class="form-group">
-				<label for="pass2">Retype password: </label>
-				<input type="password" class="form-control" id="pass2" maxlength="88" ><!--onkeyup="restrict('pass2')" 
-			</div>
-			<button type ="submit" class="btn btn-default" onclick="signUp()" >Submit</button>
-		</form>
-</div>
-				
-			-->
-			
-		
 		
 <div class="container-fluid" id="myForm">
     <section class="container">
@@ -174,11 +147,7 @@
 				<div class="form-group col-lg-12">
 					<label for="email">E-mail address: </label>
 					<input type="email" class="form-control" id="email">  <!-- onkeyup="restrict('email')" -->
-						
-					
 				</div>
-				
-				
 				
 				<div class="form-group col-lg-12">
 					<label for="email2">Secondary E-mail address: </label>
@@ -201,24 +170,7 @@
 			</form>
 			</div>
 		
-	<!--		<div class="col-md-6">
-				<h3 class="dark-grey">Terms and Conditions</h3>
-				<p>
-					By clicking on "Register" you agree to The Company's' Terms and Conditions
-				</p>
-				<p>
-					While rare, prices are subject to change based on exchange rate fluctuations - 
-					should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)
-				</p>
-				<p>
-					Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)
-				</p>
-				<p>
-					Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)
-				</p>
-				
-				
-			</div> -->
+	
 		</div>
 	</section>
 </div>

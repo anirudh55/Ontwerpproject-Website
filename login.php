@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-
+		<!-- Login page-->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +29,8 @@
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 	<script>
+		
+		/*This function is not used to anymore. Howver it can be used to restric users from entering certain characters. Malicious characters are now removed on the server. */
 		function restrict(elem){
 			var tf = document.getElementById(elem);
 			var test = tf.value;
@@ -42,6 +44,9 @@
 				if(tf.value != test){document.getElementById('status').innerHTML = "Please don't use any quotes."}
 			}
 		
+		/*
+			When the user clicks log in this function sends the username and password to the server for verification.
+		*/
 		function login(){
 			var e = document.getElementById('email').value;
 			var p = document.getElementById('password').value;

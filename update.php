@@ -1,7 +1,10 @@
 		<?php 
 		include_once('session.php');
-
+/*
+	This script updates user information upon receiving the data through a HTTP POST Request.
+*/
 if(isset($_POST['fields'])){
+	//Retrieves the emails of the user. The emails are then used in the email fields of the 'my account' page. 
 	$email = $_SESSION['email'];
 
 	include_once('includeUser.php');
@@ -64,7 +67,7 @@ if($p1 != $p2){
 	echo false;
 } else{
 	
-	//$cryptpass = crypt($p1);
+	//Inserts the user information into the database.
 	
 	if($p1 == ""){
 		$sql = "UPDATE users SET email='$e1', email2='$e2' WHERE email='$email'";

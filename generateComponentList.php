@@ -1,7 +1,14 @@
 <?php
 include_once('session.php');
+
+	/*
+		This script generates a dropdown menu containing all the components. 
+	
+	*/
 						$count=$_GET["count"];
 						include_once('includeGraph.php');
+								
+								//Connect to the database and retrieve the data
 								mysql_connect($servername, $username, $password);
 								$res = mysql_query("SHOW TABLES FROM $dbname");
 								$tables = array();
@@ -38,14 +45,6 @@ echo "<ul class = \"nav nav-tabs\">
 				<div id=\"extra{$count}\"> </div> " ; 
 
 		echo "</div> </div>";
-	//	</div>" ; 
-
-	// echo "<div class= \"col-md-6\" style=\"background-color:lavenderblush;\">
-	//echo "";
-		
-	//	</div>
-//	</div>" ; 
-	//<li class='list-group-item'><button class=\"btn btn-primary\" onclick=\"downloadTable({$count})\">Download entire component</button></li>
 	?>
 </body>
 </html>

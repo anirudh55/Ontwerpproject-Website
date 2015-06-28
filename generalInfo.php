@@ -1,6 +1,10 @@
 <?php
 include_once('session.php');
 require_once('includeGraph.php');
+
+	/*
+		When the user selects a component on the GI page, this script will select the latest entry and echo back an array containing the data. 
+	*/
 					if(!isset($_POST['tname'])){
 								mysql_connect($servername, $username, $password);
 								$res = mysql_query("SHOW TABLES FROM $dbname");
@@ -11,7 +15,7 @@ require_once('includeGraph.php');
 								}
 							$conn->close();
 
-							echo "<select id= \"generalBox\" onchange=\"generateGeneralInfo();\">" ;
+							echo "<select id= \"generalBox\" onchange=\"generateGeneralInfo();\">" ;		//Generate a dropdown menu containing all the components
 							echo "<option value='null'>Please select a component: </option>";
 								for($i = 0; $i < count($tables); $i++){
 										echo "<option value=\"$tables[$i]\">Component $i - $tables[$i] </option>";
@@ -20,7 +24,7 @@ require_once('includeGraph.php');
 					} elseif(isset($_POST['tname'])){
 						
 							
-						$sql = "SELECT * FROM " . $_POST['tname'] . " ORDER BY date DESC";
+						$sql = "SELECT * FROM " . $_POST['tname'] . " ORDER BY date DESC";			//Select the latest entry
 			
 				
 						$result = $conn->query($sql);
@@ -34,7 +38,7 @@ require_once('includeGraph.php');
 							}
 						}
 					//	echo json_encode($columns);
-						echo json_encode($test);
+						echo json_encode($test);													//Echo it to the client
 						
 						
 					}

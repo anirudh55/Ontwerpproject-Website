@@ -1,6 +1,8 @@
 <?php
 	include_once('session.php');
 ?>
+
+<!--The profile page of the user. The user has the option to change his email addresses or change his passwords. -->
 <html><head><title>My Account</title>
 		<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +15,7 @@
 	
 	<script>
 	
+		//This function is not used anymore. This function restricts users from entering certain characters in the input fields. 
 	function restrict(elem){
 			var tf = document.getElementById(elem);
 			var test = tf.value;
@@ -26,6 +29,9 @@
 				if(tf.value != test){document.getElementById('status').innerHTML = "Please don't use any quotes."}
 			}
 	
+		/*
+			This function sends the input of the user to the server in order to update the information.
+		*/
 		function save(){
 			var e1 = document.getElementById('email1').value;	
 			var e2 = document.getElementById('email2').value;	
@@ -70,7 +76,9 @@
 			}
 		}
 		
-		
+		/*
+			This function retrieves the email addresses of the user so that they appear in the input fields. The user can then see his email addresses. 
+		*/
 		function getEmails(){
 				var xmlhttp;
 				if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -106,6 +114,7 @@
 	
 
 <body>
+	<!--The input fields-->
 	<script src="globalLayout.js"></script>
 	<div class="container">
 		<form role="form">
