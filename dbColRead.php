@@ -16,7 +16,7 @@
 
 	$colName = preg_replace('/\s+/', '', $colName);	//Make is SQL safe
 
-	$sql = "SELECT date, " .$colName . " FROM " .$tableName . " LIMIT " . $limit;		//Retrieve the data from the Server
+	$sql = "SELECT date, " .$colName . " FROM " .$tableName . " ORDER BY date DESC LIMIT " . $limit;		//Retrieve the data from the Server
 
 	$result = $conn->query($sql);			//Place the query
 	$columns = array();			//Create an array for the data
