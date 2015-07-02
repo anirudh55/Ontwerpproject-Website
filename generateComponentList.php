@@ -32,13 +32,13 @@ echo "<ul class = \"nav nav-tabs\">
 							echo "<ul class=\"list-group\"><li class=\"list-group-item\">Please select the desired component: <br><br><select id=\"selectBox{$count}\" onchange=\"primaryMenu({$count});\">" ;
 							echo "<option value='empty'>Please select a component: </option>";
 								for($i = 0; $i < count($tables); $i++){
-										echo "<option value=\"$tables[$i]\"> $i - $tables[$i] </option>";
+										echo "<option value=\"$tables[$i]\">$i - $tables[$i] </option>";
 								}
-							echo "</select><br><br></li><li class=\"list-group-item\">Please select the number of entries you would like to display: <br><br><input type=\"text\" id=\"limit{$count}\" value=\"1000\"><br><br></li>";
+							echo "</select><br><br></li><li class=\"list-group-item\">Please select the number of entries you would like to display: <br><br><input type=\"text\" id=\"limit{$count}\" value=\"1000\"><br><br></li></ul>";
 				echo "<div id=\"secondMenu{$count}\"></div>
 				<div id=\"thirdMenu{$count}\"></div>
 			<div class=\"tab-content\">	
-			<li class=\"list-group-item\"><div class=\"tab-pane fade active in\" id=\"chart_div{$count}\" style=\"width:400; height:300\"></div> </li>
+				<div class=\"tab-pane fade active in\" id=\"chart_div{$count}\" style=\"width:700; height:400\"></div>
 				<div class=\"tab-pane fade\" id=\"table_div{$count}\">Table data will be displayed on this side of the column</div>
 				<div class=\"tab-pane fade\" id=\"download_div{$count}\"><ul class='list-group'><li class='list-group-item'><div id=\"advancedOptions{$count}\"></div></li><li class='list-group-item'><button class=\"btn btn-link\" onclick=\"downloadGraph({$count})\">Generate JSON File</button></li><li class='list-group-item'><div id=\"downloadButton{$count}\">Download button will appear here</div></li></ul></div>
 			</div>	

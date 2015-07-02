@@ -132,7 +132,7 @@ include_once('session.php');
 		function secondMenu(resp, tableName, count){
 		
 			//The code which creates the dropdown menu. 
-			var downl = "<li class='list-group-item'>Check the following box to select all attributes: <br><br><label class=\"checkbox-inline\"><input id=\"checkboxSelector"+count+"\" type=\"checkbox\" onclick=\"selectCheckBox("+count+")\">Select all</label></li>";
+			var downl = "<ul class='list-group'><li class='list-group-item'>Check the following box to select all attributes: <br><br><label class=\"checkbox-inline\"><input id=\"checkboxSelector"+count+"\" type=\"checkbox\" onclick=\"selectCheckBox("+count+")\">Select all</label></li>";
 			downl = downl + "<div id='c_b'><li class='list-group-item'>Select the attributes you would like to download: <br><br>";
 			
 				//Prepare to make the respons into an array. 
