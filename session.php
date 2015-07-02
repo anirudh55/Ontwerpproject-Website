@@ -12,8 +12,8 @@
 		#TODO Note, conn2 cannot be named conn, this will introduce a bug since conn is already opened somewhere else.
 		$dbname = "users";
 		$servername = "localhost";
-		$username = "henk";
-		$password = "henk";
+		$username = "anna";
+		$password = "karenina";
 		// Create connection
 		$conn2 = new mysqli($servername, $username, $password, $dbname);
 		// Check connection
