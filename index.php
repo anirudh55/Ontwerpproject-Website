@@ -185,9 +185,9 @@
 		</script>
 		
 		<div class="container">
-			<div class="jumbotron">
-		<h1>DNS-Jedi</h1>
-		<p>Welcome to the website of DNS-Jedi. This website is still under construction and can only view basic information.</p>
+			<div class="jumbotron"><img src="yoda.png" style="width:220px;height:170px;" class="pull-right">
+		<h1>DNS-Jedi </h1>
+		<p>Welcome to the website of DNS-Jedi </p>
 		</div>
 			<div class="row">
 				<div class="col-sm-4">
