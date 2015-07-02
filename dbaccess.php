@@ -12,6 +12,9 @@ include_once('session.php');
 }</style>-->
 	
 	<title>Graphing tools</title>
+	<link rel="icon" 
+      type="image/ico" 
+      href="favicon.ico">
 	 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">

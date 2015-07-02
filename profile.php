@@ -4,6 +4,10 @@
 
 <!--The profile page of the user. The user has the option to change his email addresses or change his passwords. -->
 <html><head><title>My Account</title>
+	<link rel="icon" 
+      type="image/ico" 
+      href="favicon.ico">
+	
 		<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">

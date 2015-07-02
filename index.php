@@ -5,6 +5,11 @@
 	
 	<!--This webpage shows any notifications and their graphs-->
 	<head><title>DNS - Jedi</title> 
+		
+		<link rel="icon" 
+      type="image/ico" 
+      href="favicon.ico">
+		
 			 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
