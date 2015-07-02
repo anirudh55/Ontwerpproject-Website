@@ -187,6 +187,13 @@ include_once('session.php');
 			//The parameter which is sent with the POST request. This contains, the attribute name, and whether it should download anything. 
 			var param= "colName=" + columnNames[count] + "&tableName="+tableNames[count]+ "&download=" + download.toString();
 			
+			var lim = "limit" + count;
+			var limCount = 1000;
+			if(document.getElementById(lim).value != "")
+				limCount = document.getElementById(lim).value;
+				
+			param = param + "&limit=" + limCount;
+			
 			var col;
 			var dat;
 			

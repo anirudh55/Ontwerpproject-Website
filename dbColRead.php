@@ -9,10 +9,14 @@
 	$tableName = $_POST['tableName'];		//Name of the component
 	$colName = $_POST['colName'];			//Name of the attribute
 	$download = $_POST['download'];			//Check for download
+	if(isset($_POST['limit']))
+		$limit = $_POST['limit'];
+	else
+		$limit = "1000";
 
 	$colName = preg_replace('/\s+/', '', $colName);	//Make is SQL safe
 
-	$sql = "SELECT date, " .$colName . " FROM " .$tableName . " LIMIT 2000";		//Retrieve the data from the Server
+	$sql = "SELECT date, " .$colName . " FROM " .$tableName . " LIMIT " . $limit;		//Retrieve the data from the Server
 
 	$result = $conn->query($sql);			//Place the query
 	$columns = array();			//Create an array for the data

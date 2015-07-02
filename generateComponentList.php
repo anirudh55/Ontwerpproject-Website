@@ -34,7 +34,7 @@ echo "<ul class = \"nav nav-tabs\">
 								for($i = 0; $i < count($tables); $i++){
 										echo "<option value=\"$tables[$i]\">Component $i - $tables[$i] </option>";
 								}
-							echo "</select><br><br></li></ul>";
+							echo "</select><br><br></li><li><form><input type=\"text\" id=\"limit{$count}\"></form></li></ul>";
 				echo "<div id=\"secondMenu{$count}\"></div>
 				<div id=\"thirdMenu{$count}\"></div>
 			<div class=\"tab-content\">	

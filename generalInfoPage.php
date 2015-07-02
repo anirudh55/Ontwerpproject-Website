@@ -212,6 +212,12 @@
 		<script>selectComponentGeneral();	</script>
 		<h3>Please select a component</h3>
 		
+		
+		
+		<div id="main">
+		
+		</div>
+		
 		<div id="container">
 			<div class="row">
 				<div class="col-xs-4">
@@ -226,9 +232,6 @@
 			</div>
 		</div>
 		
-		<div id="main">
-		
-		</div>
 		<div id="information">
 		
 		</div>
