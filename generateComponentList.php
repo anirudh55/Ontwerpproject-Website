@@ -32,7 +32,7 @@ echo "<ul class = \"nav nav-tabs\">
 							echo "<ul class=\"list-group\"><li class=\"list-group-item\">Please select the desired component: <br><br><select id=\"selectBox{$count}\" onchange=\"primaryMenu({$count});\">" ;
 							echo "<option value='empty'>Please select a component: </option>";
 								for($i = 0; $i < count($tables); $i++){
-										echo "<option value=\"$tables[$i]\">Component $i - $tables[$i] </option>";
+										echo "<option value=\"$tables[$i]\"> $i - $tables[$i] </option>";
 								}
 							echo "</select><br><br></li><li><form><input type=\"text\" id=\"limit{$count}\"></form></li></ul>";
 				echo "<div id=\"secondMenu{$count}\"></div>
