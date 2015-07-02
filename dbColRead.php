@@ -12,7 +12,7 @@
 
 	$colName = preg_replace('/\s+/', '', $colName);	//Make is SQL safe
 
-	$sql = "SELECT date, " .$colName . " FROM " .$tableName;		//Retrieve the data from the Server
+	$sql = "SELECT date, " .$colName . " FROM " .$tableName . " LIMIT 2000";		//Retrieve the data from the Server
 
 	$result = $conn->query($sql);			//Place the query
 	$columns = array();			//Create an array for the data
